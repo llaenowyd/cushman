@@ -1,3 +1,3 @@
 # cushman
 
-gui pervasives
+general purpose toolkit
