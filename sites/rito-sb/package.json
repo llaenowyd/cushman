@@ -1,5 +1,6 @@
 {
-  "name": "@a110/github-pages",
+  "name": "@a110/rito-sb",
+  "private": true,
   "version": "0.0.1",
   "scripts": {
     "dev": "vite",
