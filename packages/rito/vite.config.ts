@@ -4,7 +4,7 @@ import { resolve } from 'path'
 import { defineConfig } from 'vite'
 import dts from 'vite-plugin-dts'
 
-import injectCss from './scripts/inject-css'
+import injectCss from './scripts/build/inject-css'
 
 export default defineConfig({
   plugins: [

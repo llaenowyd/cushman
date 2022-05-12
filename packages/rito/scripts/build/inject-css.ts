@@ -57,7 +57,6 @@ function buildOutput(extracts) {
 }
 
 let viteConfig
-const css = []
 
 export default function libInjectCss() {
   const extracted = new Map()

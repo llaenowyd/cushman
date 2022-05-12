@@ -2,44 +2,38 @@ import React from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 
 // TBD TBD TBD
-import { Button } from './Button'
-import { Button as RitoButton } from '@a110/rito'
+import { Button } from '@a110/rito'
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
-  title: 'Example/Button',
-  component: RitoButton,
+  title: 'Button',
+  component: Button,
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
   argTypes: {
     backgroundColor: { control: 'color' },
   },
-} as ComponentMeta<typeof RitoButton>
+} as ComponentMeta<typeof Button>
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof RitoButton> = args => (
-  <RitoButton {...args} />
-)
+const Template: ComponentStory<typeof Button> = args => <Button {...args} />
 
-// export const Primary = Template.bind({})
-// // More on args: https://storybook.js.org/docs/react/writing-stories/args
-// Primary.args = {
-//   primary: true,
-//   label: 'Button',
-// }
+// More on args: https://storybook.js.org/docs/react/writing-stories/args
 
-export const Secondary = Template.bind({})
-Secondary.args = {
+export const Primary = Template.bind({})
+Primary.args = {
   label: 'Button',
+  onClick: () => {},
 }
 
-export const Large = Template.bind({})
-Large.args = {
-  // size: 'large',
+export const Disabled = Template.bind({})
+Disabled.args = {
+  disabled: true,
   label: 'Button',
+  onClick: () => {},
 }
 
 export const Small = Template.bind({})
 Small.args = {
-  // size: 'small',
   label: 'Button',
+  onClick: () => {},
 }
