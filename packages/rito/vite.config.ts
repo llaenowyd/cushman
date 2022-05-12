@@ -1,11 +1,15 @@
-import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import { resolve } from 'path'
+import { defineConfig } from 'vite'
 import dts from 'vite-plugin-dts'
+
+import injectCss from './scripts/build/inject-css'
 
 export default defineConfig({
   plugins: [
     react(),
+    // @ts-ignore
+    injectCss(),
     dts({
       insertTypesEntry: true,
     }),
