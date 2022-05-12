@@ -3,11 +3,12 @@
   "version": "0.0.1",
   "license": "ISC",
   "scripts": {
-    "dev": "nodemon --watch src -e ts,tsx,css --exec \"yarn build\"",
+    "dev": "vite",
     "fill-style-templates": "ts-node -P tsconfig.tsnode.json scripts/tsnode/fill-style-templates.ts templates dist/styles",
     "typecheck": "tsc",
     "build:prod": "vite build",
     "build": "run-s typecheck build:prod fill-style-templates",
+    "build:watch": "nodemon --watch src -e ts,tsx,css --exec \"yarn build\"",
     "preview": "vite preview",
     "prepack": "json -f package.json -I -e \"delete this.devDependencies; delete this.dependencies\""
   },

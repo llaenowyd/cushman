@@ -1,4 +1,3 @@
-// import injectCss from '@cxing/vitejs-plugin-inject-css'
 import react from '@vitejs/plugin-react'
 import { resolve } from 'path'
 import { defineConfig } from 'vite'
