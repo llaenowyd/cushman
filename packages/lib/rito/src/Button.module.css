@@ -1,0 +1,26 @@
+.input {
+  color: var(--text-control);
+  background-color: var(--bg-control);
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  text-transform: uppercase;
+  cursor: pointer;
+  border-width: 0;
+  box-shadow: 2px 2px 3px 0 var(--color-shadow);
+}
+
+.input:disabled {
+  color: var(--text-control-disabled);
+  background-color: var(--bg-control-disabled);
+  cursor: not-allowed;
+}
+
+.input:enabled:active {
+  transform: translate(1px, 1px);
+}
+
+.input:enabled:hover {
+  filter: contrast(1.25);
+}
