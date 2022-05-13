@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "license": "ISC",
   "scripts": {
+    "clean": "rimraf dist",
     "dev": "vite",
     "fill-style-templates": "ts-node -P tsconfig.tsnode.json scripts/tsnode/fill-style-templates.ts templates dist/styles",
     "typecheck": "tsc",
@@ -26,6 +27,7 @@
     "json": "^11.0.0",
     "nodemon": "^2.0.16",
     "npm-run-all": "^4.1.5",
+    "rimraf": "^3.0.2",
     "tailwindcss": "^3.0.24",
     "ts-node": "^10.7.0",
     "typescript": "^4.6.3",
