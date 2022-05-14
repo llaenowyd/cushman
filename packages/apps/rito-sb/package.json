@@ -4,7 +4,8 @@
   "version": "0.0.1",
   "scripts": {
     "clean": "rimraf storybook-static",
-    "dev": "nodemon --watch ../../packages/rito/dist -e ts,tsx --exec \"start-storybook -p 6006\"",
+    "dev": "start-storybook -p 6006",
+    "dev:libwatch": "nodemon --watch ../../packages/rito/dist -e ts,tsx --exec \"start-storybook -p 6006\"",
     "dev:app": "vite",
     "build:app": "tsc && vite build",
     "preview:app": "vite preview",

@@ -19,7 +19,9 @@
     "clean": "run-s clean-workspaces clean-root",
     "build-rito": "yarn workspace @a110/rito build",
     "build-rito-sb": "yarn workspace @a110/rito-sb build-storybook",
-    "build": "run-s build-rito build-rito-sb"
+    "build": "run-s build-rito build-rito-sb",
+    "serve-rito-sb": "yarn workspace @a110/rito-sb serve",
+    "dev-rito-sb": "yarn workspace @a110/rito-sb dev"
   },
   "keywords": [],
   "author": "Collin Monahan <llaenowyd@gmail.com>",
