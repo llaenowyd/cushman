@@ -20,6 +20,7 @@
     "build-rito": "yarn workspace @a110/rito build",
     "build-rito-sb": "yarn workspace @a110/rito-sb build-storybook",
     "build": "run-s build-rito build-rito-sb",
+    "//publish-rito": "yarn workspace @a110/rito publish --access public",
     "serve-rito-sb": "yarn workspace @a110/rito-sb serve",
     "dev-rito-sb": "yarn workspace @a110/rito-sb dev"
   },
