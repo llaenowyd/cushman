@@ -1,14 +1,20 @@
 .rito-dark {
+  --bg-primary: TW_slate_900;
+  --bg-secondary: TW_slate_800;
   --bg-control: TW_blue_800;
   --bg-control-disabled: TW_gray_500;
+  --text-primary: TW_teal_100;
   --text-control: TW_sky_100;
   --text-control-disabled: TW_gray_300;
   --color-shadow: #101010;
 }
 
 .rito-light {
+  --bg-primary: TW_slate_50;
+  --bg-secondary: TW_slate_200;
   --bg-control: TW_blue_300;
   --bg-control-disabled: TW_gray_300;
+  --text-primary: TW_slate_800;
   --text-control: TW_sky_800;
   --text-control-disabled: TW_gray_500;
   --color-shadow: TW_gray_400;

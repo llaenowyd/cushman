@@ -15,8 +15,8 @@ const Template: ComponentStory<typeof Button> = args => <Button {...args} />
 
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 
-export const Primary = Template.bind({})
-Primary.args = {
+export const Default = Template.bind({})
+Default.args = {
   label: 'Button',
   onClick: () => {},
 }
