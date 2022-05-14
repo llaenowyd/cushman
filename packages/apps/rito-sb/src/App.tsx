@@ -1,9 +1,9 @@
-import { Placard } from '@a110/rito'
+import { Button } from '@a110/rito'
 
 function App() {
   return (
     <div className="App">
-      <Placard />
+      <Button label="Hello from @a110/rito" onClick={() => {}} />
     </div>
   )
 }
