@@ -1,4 +1,6 @@
-import { themes } from '@storybook/theming'
+import darkTheme from './darkTheme'
+import lightTheme from './lightTheme'
+
 import '@a110/rito/styles/themes'
 
 export const parameters = {
@@ -10,10 +12,11 @@ export const parameters = {
     },
   },
   darkMode: {
-    dark: themes.dark, // caution don't add variables here
-    light: themes.light, // such as ...
-    // appBg: 'var(--bg-primary)',
-    // textColor: 'var(--text-primary)',
+    dark: darkTheme, // caution don't add variables here
+    light: lightTheme, // such as ...
+    // { ...darkTheme,
+    //   appBg: 'var(--bg-primary)',
+    //   textColor: 'var(--text-primary)' }
     // ............. because it will corrupt local storage
     darkClass: 'rito-dark',
     lightClass: 'rito-light',
