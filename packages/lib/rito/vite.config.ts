@@ -17,7 +17,7 @@ export default defineConfig({
   build: {
     lib: {
       entry: resolve(__dirname, 'src', 'index.ts'),
-      name: '@a110/rito',
+      name: 'rito',
       formats: ['es', 'umd'],
       fileName: format => `rito.${format}.js`,
     },

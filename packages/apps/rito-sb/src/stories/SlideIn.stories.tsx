@@ -1,17 +1,17 @@
 import React from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 
-import { RightSlideIn } from '@a110/rito'
+import { SlideIn } from '@a110/rito'
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
-  title: 'RightSlideIn',
-  component: RightSlideIn,
+  title: 'SlideIn',
+  component: SlideIn,
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
-} as ComponentMeta<typeof RightSlideIn>
+} as ComponentMeta<typeof SlideIn>
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const DefaultComponent: ComponentStory<typeof RightSlideIn> = args => (
+const DefaultComponent: ComponentStory<typeof SlideIn> = args => (
   <div
     style={{
       backgroundColor: 'var(--bg-primary)',
@@ -23,7 +23,7 @@ const DefaultComponent: ComponentStory<typeof RightSlideIn> = args => (
       gap: '0.5rem',
     }}
   >
-    <RightSlideIn {...args}>
+    <SlideIn {...args}>
       <div
         style={{
           backgroundColor: 'var(--bg-secondary)',
@@ -31,7 +31,7 @@ const DefaultComponent: ComponentStory<typeof RightSlideIn> = args => (
       >
         One
       </div>
-    </RightSlideIn>
+    </SlideIn>
     <div
       style={{
         backgroundColor: 'var(--bg-secondary)',

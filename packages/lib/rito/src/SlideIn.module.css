@@ -1,0 +1,11 @@
+.viewport {
+  overflow: hidden;
+}
+
+.shiftedRight {
+  transform: translateX(100%);
+}
+
+.unshifted {
+  transform: translate(0);
+}
