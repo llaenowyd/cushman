@@ -1,13 +1,5 @@
-# cushman toolkit
+# <img align="center" src="doc/img/syrup.svg" width="52" height="52">cushman toolkit
 
-_Sugarbush Cushman lived by the Ruud pond  
-Way up north in Barre Vermont  
-Way up high where the maple trees grow,  
-She says "I'm from Vermont and I loves the snow."  
-In her floppy french cap, seated beneath the maple tree,  
-Drinking down the sap, not a care in the world  
-Cause it's all in her hands as she throws her head back.  
-Married by the minister, her mother made the cake,  
-And her husband played the drums in a big dance band,  
-And they could take the six dollars they made everynight  
-And keep them in hot food in her cast iron pan._
+| unit of release | repository |
+| --------------- | ---------- |
+| [`@a110/rito` React Lib](packages/lib/rito/) | [![npm version](https://badge.fury.io/js/@a110%2Frito.svg)](https://www.npmjs.com/package/@a110/rito) |
