@@ -1,0 +1,36 @@
+name: release-rito
+on:
+  push:
+    tags:
+      - rito_v*
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+
+      - name: version
+        run: yarn workspace @a110/rito version --new-version "${GITHUB_REF:16}" --no-git-tag-version
+
+      - name: install
+        run: yarn install --frozen-lockfile
+
+      - name: build
+        run: yarn build-rito
+
+      - name: magic setup
+        uses: actions/setup-node@v1
+        with:
+          node-version: 16.x
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: publish
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: yarn workspace @a110/rito publish --access public
+
+        # if: steps.release.outputs.tag != ''
+        # run: yarn publish --new-version ${{ steps.release.outputs.version }} --tag ${{ steps.release.outputs.tag }}
+        # run: yarn publish --new-version ${{ steps.release.outputs.version }}
