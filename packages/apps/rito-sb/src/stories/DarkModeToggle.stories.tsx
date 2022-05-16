@@ -1,17 +1,10 @@
-import React, { useCallback, useMemo, useState } from 'react'
-// import { action } from '@storybook/addon-actions' // tbd
+import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 
-import { DarkModeToggle } from '@a110/rito'
+import { ANY_COLOR_SCHEME, DarkModeToggle } from '@a110/rito'
 import { ColorScheme } from '@a110/rito/dist/types/color_scheme'
 
 import classes from './DarkModeToggleStories.module.css'
-
-// More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
-export default {
-  title: 'DarkModeToggle',
-  component: DarkModeToggle,
-} as ComponentMeta<typeof DarkModeToggle>
 
 const colorSchemeToEmoji = (colorScheme: ColorScheme): string =>
   'dark' === colorScheme ? '🌜' : 'light' === colorScheme ? '🌞' : '🤷‍♂️'
@@ -67,14 +60,50 @@ const FlagSelect: React.FC<{
   )
 }
 
-// More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof DarkModeToggle> = args => {
-  const [deviceColorScheme, setDeviceColorScheme] =
-    useState<ColorScheme>('no-preference')
-  const [appColorScheme, setAppColorScheme] = useState<ColorScheme>('light')
+type DarkModeToggleStoryProps = {
+  appColorScheme: ColorScheme
+  deviceColorScheme: ColorScheme
+  followDevice: boolean
+}
+
+const DarkModeToggleStory = (props: DarkModeToggleStoryProps) => {
+  const initialAppColorScheme: ColorScheme = props.appColorScheme
+  const initialDeviceColorScheme: ColorScheme = props.deviceColorScheme
+  const initialFollowDevice: boolean = props.followDevice
+  console.log({
+    props,
+    initialAppColorScheme,
+    initialDeviceColorScheme,
+    initialFollowDevice,
+  })
+
+  const [deviceColorScheme, setDeviceColorScheme] = useState<ColorScheme>(
+    initialDeviceColorScheme ?? ANY_COLOR_SCHEME
+  )
+  const [appColorScheme, setAppColorScheme] = useState<ColorScheme>(
+    initialAppColorScheme
+  )
   const [appFollowDeviceSetting, setAppFollowDeviceSetting] = useState<
     boolean | undefined
-  >(false)
+  >(initialFollowDevice)
+
+  useEffect(() => {
+    if (initialAppColorScheme) {
+      setAppColorScheme(initialAppColorScheme)
+    }
+  }, [initialAppColorScheme, setAppColorScheme])
+
+  useEffect(() => {
+    if (initialDeviceColorScheme) {
+      setDeviceColorScheme(initialDeviceColorScheme)
+    }
+  }, [initialDeviceColorScheme, setDeviceColorScheme])
+
+  useEffect(() => {
+    if (null != initialFollowDevice) {
+      setAppFollowDeviceSetting(initialFollowDevice)
+    }
+  }, [initialFollowDevice, setAppFollowDeviceSetting])
 
   const deviceValue = useMemo(
     () => colorSchemeToEmoji(deviceColorScheme),
@@ -169,17 +198,49 @@ const Template: ComponentStory<typeof DarkModeToggle> = args => {
           </div>
         </div>
       </div>
-      <DarkModeToggle
-        colorScheme={effectiveColorScheme}
-        setColorScheme={setEffectiveColorScheme}
-        followDevice={appFollowDeviceSetting as boolean}
-        setFollowDevice={setAppFollowDeviceSetting}
-      />
+      <div className={classes.featureCard}>
+        <DarkModeToggle
+          colorScheme={effectiveColorScheme}
+          setColorScheme={setEffectiveColorScheme}
+          followDevice={appFollowDeviceSetting as boolean}
+          setFollowDevice={setAppFollowDeviceSetting}
+        />
+      </div>
     </div>
   )
 }
 
-// More on args: https://storybook.js.org/docs/react/writing-stories/args
+const colorSchemeArgType = {
+  options: ['dark', 'light', 'no-preference'],
+  control: { type: 'select' },
+}
+
+export default {
+  title: 'DarkModeToggle',
+  component: DarkModeToggle,
+  argTypes: {
+    deviceColorScheme: {
+      ...colorSchemeArgType,
+      description: 'device color scheme, obtained via media query',
+    },
+    appColorScheme: {
+      ...colorSchemeArgType,
+      description: 'app color scheme setting, e.g. user preference',
+    },
+    followDevice: {
+      control: 'boolean',
+      description: 'app setting, whether to sync color scheme with device',
+    },
+  },
+} as ComponentMeta<typeof DarkModeToggleStory>
+
+const Template: ComponentStory<typeof DarkModeToggleStory> = args => (
+  <DarkModeToggleStory {...args} />
+)
 
 export const Default = Template.bind({})
-Default.args = {}
+Default.args = {
+  deviceColorScheme: 'dark',
+  appColorScheme: 'light',
+  followDevice: true,
+}
