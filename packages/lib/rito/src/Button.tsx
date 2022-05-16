@@ -2,8 +2,6 @@ import React from 'react'
 
 import classes from './Button.module.css'
 
-console.warn('__INJECT__')
-
 const Button: React.FC<{
   label: string
   onClick: () => void

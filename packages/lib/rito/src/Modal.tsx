@@ -2,8 +2,6 @@ import React from 'react'
 
 import classes from './Modal.module.css'
 
-console.warn('__INJECT__') // tbd
-
 const Modal: React.FC<{
   children: JSX.Element
   visible: boolean

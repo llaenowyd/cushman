@@ -1,0 +1,61 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem;
+  gap: 0.5rem;
+  align-items: flex-start;
+  max-width: 100%;
+}
+
+.stateBox {
+  display: flex;
+  flex-direction: column;
+  padding: 0.25rem;
+  gap: 0.25rem;
+  max-width: 100%;
+  text-overflow: ellipsis;
+  overflow-x: hidden;
+  white-space: nowrap;
+  user-select: none;
+}
+
+.stateBoxHeading {
+  color: var(--text-primary);
+  text-decoration: underline;
+  max-width: 100%;
+  text-overflow: ellipsis;
+  overflow-x: hidden;
+  white-space: nowrap;
+}
+
+.stateBoxSubheading {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 80%;
+  padding-left: 1rem;
+  max-width: 100%;
+  text-overflow: ellipsis;
+  overflow-x: hidden;
+  white-space: nowrap;
+}
+
+.stateBoxContent {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 0.25rem;
+  gap: 0.25rem;
+}
+
+.stateBoxItem {
+  background-color: #d6ffea;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.stateBoxItemLabel {
+  font-size: 80%;
+  text-decoration: underline;
+  text-align: center;
+}
