@@ -7,7 +7,7 @@ import { Button } from '@a110/rito'
 export default {
   title: 'Button',
   component: Button,
-  // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
+  argTypes: { onClick: { action: 'clicked' } },
 } as ComponentMeta<typeof Button>
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
@@ -17,13 +17,12 @@ const Template: ComponentStory<typeof Button> = args => <Button {...args} />
 
 export const Default = Template.bind({})
 Default.args = {
+  disabled: false,
   label: 'Button',
-  onClick: () => {},
 }
 
 export const Disabled = Template.bind({})
 Disabled.args = {
   disabled: true,
   label: 'Button',
-  onClick: () => {},
 }
