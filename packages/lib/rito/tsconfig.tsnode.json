@@ -2,7 +2,8 @@
   "compilerOptions": {
     "composite": true,
     "module": "CommonJS",
-    "moduleResolution": "node"
+    "moduleResolution": "node",
+    "esModuleInterop": true
   },
   "include": ["scripts/tsnode"]
 }

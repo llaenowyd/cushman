@@ -8,10 +8,10 @@
   "scripts": {
     "clean": "rimraf dist",
     "dev": "vite",
-    "fill-style-templates": "ts-node -P tsconfig.tsnode.json scripts/tsnode/fill-style-templates.ts templates dist/styles",
+    "render-default-palettes": "ts-node -P tsconfig.tsnode.json scripts/tsnode/render-default-palettes.ts dist/styles/default-palettes.css",
     "typecheck": "tsc",
     "build:prod": "vite build",
-    "build": "run-s typecheck build:prod fill-style-templates",
+    "build": "run-s typecheck build:prod render-default-palettes",
     "build:watch": "nodemon --watch src -e ts,tsx,css --exec \"yarn build\"",
     "preview": "vite preview",
     "release-patch": "yarn version --patch && git push --follow-tags"
