@@ -5,7 +5,7 @@ import { SlideIn } from '@a110/rito'
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
-  title: 'SlideIn',
+  title: 'rito/component/SlideIn',
   component: SlideIn,
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
 } as ComponentMeta<typeof SlideIn>

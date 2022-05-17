@@ -5,7 +5,7 @@ import { Button } from '@a110/rito'
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
-  title: 'Button',
+  title: 'rito/component/Button',
   component: Button,
   argTypes: { onClick: { action: 'clicked' } },
 } as ComponentMeta<typeof Button>

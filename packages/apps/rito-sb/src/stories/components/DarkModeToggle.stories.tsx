@@ -193,7 +193,7 @@ const colorSchemeArgType = {
 }
 
 export default {
-  title: 'DarkModeToggle',
+  title: 'rito/component/DarkModeToggle',
   component: DarkModeToggle,
   argTypes: {
     deviceColorScheme: {
