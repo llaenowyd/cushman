@@ -1,7 +1,7 @@
 import darkTheme from './darkTheme'
 import lightTheme from './lightTheme'
 
-import '@a110/rito/styles/themes'
+import '@a110/rito/styles/default-palettes'
 
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' }, // tbd maybe don't need
