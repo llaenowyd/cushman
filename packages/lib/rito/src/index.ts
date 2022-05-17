@@ -1,7 +1,5 @@
-export { default as Button } from './Button'
-export { default as DarkModeToggle } from './DarkModeToggle'
-export { default as Modal } from './Modal'
-export { default as SlideIn } from './SlideIn'
 export * from './constants'
+export * from './components'
+export * from './hooks'
 
 console.warn('__INJECT__')

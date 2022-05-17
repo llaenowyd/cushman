@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 
-import { ANY_COLOR_SCHEME, DarkModeToggle } from '@a110/rito'
+import { ANY_COLOR_SCHEME, DarkModeToggle, useColorScheme } from '@a110/rito'
 import { ColorScheme } from '@a110/rito/dist/types/color_scheme'
 
 import classes from './DarkModeToggleStories.module.css'
@@ -70,12 +70,6 @@ const DarkModeToggleStory = (props: DarkModeToggleStoryProps) => {
   const initialAppColorScheme: ColorScheme = props.appColorScheme
   const initialDeviceColorScheme: ColorScheme = props.deviceColorScheme
   const initialFollowDevice: boolean = props.followDevice
-  console.log({
-    props,
-    initialAppColorScheme,
-    initialDeviceColorScheme,
-    initialFollowDevice,
-  })
 
   const [deviceColorScheme, setDeviceColorScheme] = useState<ColorScheme>(
     initialDeviceColorScheme ?? ANY_COLOR_SCHEME
@@ -83,7 +77,7 @@ const DarkModeToggleStory = (props: DarkModeToggleStoryProps) => {
   const [appColorScheme, setAppColorScheme] = useState<ColorScheme>(
     initialAppColorScheme
   )
-  const [appFollowDeviceSetting, setAppFollowDeviceSetting] = useState<
+  const [followDeviceColorScheme, setFollowDeviceColorScheme] = useState<
     boolean | undefined
   >(initialFollowDevice)
 
@@ -101,9 +95,9 @@ const DarkModeToggleStory = (props: DarkModeToggleStoryProps) => {
 
   useEffect(() => {
     if (null != initialFollowDevice) {
-      setAppFollowDeviceSetting(initialFollowDevice)
+      setFollowDeviceColorScheme(initialFollowDevice)
     }
-  }, [initialFollowDevice, setAppFollowDeviceSetting])
+  }, [initialFollowDevice, setFollowDeviceColorScheme])
 
   const deviceValue = useMemo(
     () => colorSchemeToEmoji(deviceColorScheme),
@@ -115,30 +109,13 @@ const DarkModeToggleStory = (props: DarkModeToggleStoryProps) => {
     [appColorScheme]
   )
 
-  const effectiveColorScheme = useMemo(
-    () =>
-      appFollowDeviceSetting && 'no-preference' !== deviceColorScheme
-        ? deviceColorScheme
-        : appColorScheme,
-    [appFollowDeviceSetting, deviceColorScheme, appColorScheme]
-  )
-
-  const setEffectiveColorScheme: (cs: ColorScheme) => void = useCallback(
-    (cs: ColorScheme): void => {
-      if (appColorScheme !== cs) {
-        setAppColorScheme(cs)
-      }
-      if (appFollowDeviceSetting) {
-        setAppFollowDeviceSetting(false)
-      }
-    },
-    [
-      appColorScheme,
-      setAppColorScheme,
-      appFollowDeviceSetting,
-      setAppFollowDeviceSetting,
-    ]
-  )
+  const { colorScheme, setColorScheme } = useColorScheme({
+    deviceColorScheme,
+    appColorScheme,
+    setAppColorScheme,
+    followDeviceColorScheme,
+    setFollowDeviceColorScheme,
+  })
 
   return (
     <div className={classes.container}>
@@ -187,11 +164,11 @@ const DarkModeToggleStory = (props: DarkModeToggleStoryProps) => {
               <div className={classes.stateBoxItem}>
                 <div className={classes.stateBoxItemLabel}>follow device?</div>
                 <div className={classes.stateBoxItemValue}>
-                  {appFollowDeviceSetting ? 'Y' : 'N'}
+                  {followDeviceColorScheme ? 'Y' : 'N'}
                 </div>
                 <FlagSelect
-                  flag={appFollowDeviceSetting}
-                  setFlag={setAppFollowDeviceSetting}
+                  flag={followDeviceColorScheme}
+                  setFlag={setFollowDeviceColorScheme}
                 />
               </div>
             </div>
@@ -200,10 +177,10 @@ const DarkModeToggleStory = (props: DarkModeToggleStoryProps) => {
       </div>
       <div className={classes.featureCard}>
         <DarkModeToggle
-          colorScheme={effectiveColorScheme}
-          setColorScheme={setEffectiveColorScheme}
-          followDevice={appFollowDeviceSetting as boolean}
-          setFollowDevice={setAppFollowDeviceSetting}
+          colorScheme={colorScheme}
+          setColorScheme={setColorScheme}
+          followDevice={followDeviceColorScheme as boolean}
+          setFollowDevice={setFollowDeviceColorScheme}
         />
       </div>
     </div>
