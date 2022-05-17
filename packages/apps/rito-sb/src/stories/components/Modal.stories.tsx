@@ -5,7 +5,7 @@ import { Button, Modal } from '@a110/rito'
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
-  title: 'Modal',
+  title: 'rito/component/Modal',
   component: Modal,
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
 } as ComponentMeta<typeof Modal>
