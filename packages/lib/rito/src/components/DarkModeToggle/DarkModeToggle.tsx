@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react'
 
-import { ColorScheme } from '../../types/color_scheme'
-import { DARK_COLOR_SCHEME, LIGHT_COLOR_SCHEME } from '../constants'
+import { ColorScheme } from '../../../types/color_scheme'
+import { DARK_COLOR_SCHEME, LIGHT_COLOR_SCHEME } from '../../constants'
 import SlideIn from '../SlideIn'
 
 import Lock from './Lock'
