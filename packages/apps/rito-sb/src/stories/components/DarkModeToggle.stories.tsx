@@ -1,10 +1,27 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 
-import { ANY_COLOR_SCHEME, DarkModeToggle, useColorScheme } from '@a110/rito'
+import {
+  ANY_COLOR_SCHEME,
+  ColorSchemeProvider,
+  DarkModeToggle,
+  DeviceColorSchemeContext,
+  useColorScheme,
+  useDeviceColorScheme,
+  useSetColorScheme,
+} from '@a110/rito'
 import { ColorScheme } from '@a110/rito/dist/types/color_scheme'
 
 import classes from './DarkModeToggleStories.module.css'
+
+const FakeDeviceColorSchemeProvider: React.FC<{
+  deviceColorScheme: ColorScheme
+  children: JSX.Element
+}> = ({ deviceColorScheme, children }) => (
+  <DeviceColorSchemeContext.Provider value={deviceColorScheme}>
+    {children}
+  </DeviceColorSchemeContext.Provider>
+)
 
 const colorSchemeToEmoji = (colorScheme: ColorScheme): string =>
   'dark' === colorScheme ? '🌜' : 'light' === colorScheme ? '🌞' : '🤷‍♂️'
@@ -60,44 +77,21 @@ const FlagSelect: React.FC<{
   )
 }
 
-type DarkModeToggleStoryProps = {
+const Vignette: React.FC<{
+  setDeviceColorScheme: (colorScheme: ColorScheme) => void
   appColorScheme: ColorScheme
-  deviceColorScheme: ColorScheme
-  followDevice: boolean
-}
-
-const DarkModeToggleStory = (props: DarkModeToggleStoryProps) => {
-  const initialAppColorScheme: ColorScheme = props.appColorScheme
-  const initialDeviceColorScheme: ColorScheme = props.deviceColorScheme
-  const initialFollowDevice: boolean = props.followDevice
-
-  const [deviceColorScheme, setDeviceColorScheme] = useState<ColorScheme>(
-    initialDeviceColorScheme ?? ANY_COLOR_SCHEME
-  )
-  const [appColorScheme, setAppColorScheme] = useState<ColorScheme>(
-    initialAppColorScheme
-  )
-  const [followDeviceColorScheme, setFollowDeviceColorScheme] = useState<
-    boolean | undefined
-  >(initialFollowDevice)
-
-  useEffect(() => {
-    if (initialAppColorScheme) {
-      setAppColorScheme(initialAppColorScheme)
-    }
-  }, [initialAppColorScheme, setAppColorScheme])
-
-  useEffect(() => {
-    if (initialDeviceColorScheme) {
-      setDeviceColorScheme(initialDeviceColorScheme)
-    }
-  }, [initialDeviceColorScheme, setDeviceColorScheme])
-
-  useEffect(() => {
-    if (null != initialFollowDevice) {
-      setFollowDeviceColorScheme(initialFollowDevice)
-    }
-  }, [initialFollowDevice, setFollowDeviceColorScheme])
+  setAppColorScheme: (colorScheme: ColorScheme) => void
+  followDeviceColorScheme: boolean | undefined
+  setFollowDeviceColorScheme: (fd: boolean | undefined) => void
+}> = ({
+  setDeviceColorScheme,
+  appColorScheme,
+  setAppColorScheme,
+  followDeviceColorScheme,
+  setFollowDeviceColorScheme,
+}) => {
+  const deviceColorScheme = useDeviceColorScheme()
+  const colorScheme = useColorScheme()
 
   const deviceValue = useMemo(
     () => colorSchemeToEmoji(deviceColorScheme),
@@ -109,8 +103,7 @@ const DarkModeToggleStory = (props: DarkModeToggleStoryProps) => {
     [appColorScheme]
   )
 
-  const { colorScheme, setColorScheme } = useColorScheme({
-    deviceColorScheme,
+  const setColorScheme = useSetColorScheme({
     appColorScheme,
     setAppColorScheme,
     followDeviceColorScheme,
@@ -138,7 +131,7 @@ const DarkModeToggleStory = (props: DarkModeToggleStoryProps) => {
         </div>
         <div className={classes.stateBoxContent}>
           <div className={classes.stateBoxItem}>
-            <div className={classes.stateBoxItemLabel}>device</div>
+            <div className={classes.stateBoxItemLabel}>fake device</div>
             <div className={classes.stateBoxContent}>
               <div className={classes.stateBoxItem}>
                 <div className={classes.stateBoxItemLabel}>color scheme</div>
@@ -184,6 +177,64 @@ const DarkModeToggleStory = (props: DarkModeToggleStoryProps) => {
         />
       </div>
     </div>
+  )
+}
+
+type DarkModeToggleStoryProps = {
+  appColorScheme: ColorScheme
+  deviceColorScheme: ColorScheme
+  followDevice: boolean
+}
+
+const DarkModeToggleStory = (props: DarkModeToggleStoryProps) => {
+  const initialAppColorScheme: ColorScheme = props.appColorScheme
+  const initialDeviceColorScheme: ColorScheme = props.deviceColorScheme
+  const initialFollowDevice: boolean = props.followDevice
+
+  const [deviceColorScheme, setDeviceColorScheme] = useState<ColorScheme>(
+    initialDeviceColorScheme ?? ANY_COLOR_SCHEME
+  )
+  const [appColorScheme, setAppColorScheme] = useState<ColorScheme>(
+    initialAppColorScheme
+  )
+  const [followDeviceColorScheme, setFollowDeviceColorScheme] = useState<
+    boolean | undefined
+  >(initialFollowDevice)
+
+  useEffect(() => {
+    if (initialAppColorScheme) {
+      setAppColorScheme(initialAppColorScheme)
+    }
+  }, [initialAppColorScheme, setAppColorScheme])
+
+  useEffect(() => {
+    if (initialDeviceColorScheme) {
+      setDeviceColorScheme(initialDeviceColorScheme)
+    }
+  }, [initialDeviceColorScheme, setDeviceColorScheme])
+
+  useEffect(() => {
+    if (null != initialFollowDevice) {
+      setFollowDeviceColorScheme(initialFollowDevice)
+    }
+  }, [initialFollowDevice, setFollowDeviceColorScheme])
+
+  return (
+    <FakeDeviceColorSchemeProvider deviceColorScheme={deviceColorScheme}>
+      <ColorSchemeProvider
+        appColorScheme={appColorScheme}
+        setAppColorScheme={setAppColorScheme}
+        followDeviceColorScheme={followDeviceColorScheme as boolean}
+      >
+        <Vignette
+          setDeviceColorScheme={setDeviceColorScheme}
+          appColorScheme={appColorScheme}
+          setAppColorScheme={setAppColorScheme}
+          followDeviceColorScheme={followDeviceColorScheme}
+          setFollowDeviceColorScheme={setFollowDeviceColorScheme}
+        />
+      </ColorSchemeProvider>
+    </FakeDeviceColorSchemeProvider>
   )
 }
 

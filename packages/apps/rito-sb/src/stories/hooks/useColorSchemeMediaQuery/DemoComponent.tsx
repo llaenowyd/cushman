@@ -22,7 +22,23 @@ const DemoComponent: React.FC = () => {
 
   return (
     <div className={classes.container}>
-      This hook provides the device or system color scheme: {colorSchemeEmoji}.
+      <div>
+        This hook provides the device or system color scheme: {colorSchemeEmoji}{' '}
+        ({colorScheme}).
+      </div>
+      <div className={classes.subText}>
+        To change the value displayed, try adjusting the OS Preferences:
+      </div>
+      <ul className={classes.subText}>
+        <li>
+          MacOS: System Preferences → General → Appearance at top of the window:
+          Light or Dark.
+        </li>
+        <li>
+          Windows: Settings → Personalization → Colors → Choose your color
+          dropdown: Light or Dark.
+        </li>
+      </ul>
     </div>
   )
 }
