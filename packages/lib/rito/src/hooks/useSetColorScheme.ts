@@ -5,7 +5,7 @@ import { ColorScheme } from '../../types/color_scheme'
 export type UseSetColorSchemeParam = {
   appColorScheme: ColorScheme
   setAppColorScheme: (colorScheme: ColorScheme) => void
-  followDeviceColorScheme?: boolean
+  followDeviceColorScheme: boolean
   setFollowDeviceColorScheme: (followDeviceColorScheme: boolean) => void
 }
 
