@@ -1,42 +1,29 @@
 import { useCallback } from 'react'
 
-import { ColorScheme } from '../../types/color_scheme'
+import { ColorScheme, ColorSchemeState, SetColorScheme } from '../../types'
 
-export type UseSetColorSchemeParam = {
-  appColorScheme: ColorScheme
-  setAppColorScheme: (colorScheme: ColorScheme) => void
-  followDeviceColorScheme: boolean
-  setFollowDeviceColorScheme: (followDeviceColorScheme: boolean) => void
-}
-
-export type SetColorScheme = (colorScheme: ColorScheme) => void
-
-const useSetColorScheme = (param: UseSetColorSchemeParam): SetColorScheme => {
+const useSetColorScheme = (param: ColorSchemeState): SetColorScheme => {
   const {
-    appColorScheme,
-    setAppColorScheme,
-    followDeviceColorScheme,
-    setFollowDeviceColorScheme,
+    colorScheme: appColorScheme,
+    setColorScheme: appSetColorScheme,
+    followDevice,
+    setFollowDevice,
   } = param
 
-  const setColorScheme: SetColorScheme = useCallback(
-    (cs: ColorScheme) => {
-      if (appColorScheme !== cs) {
-        setAppColorScheme(cs)
+  const controllerSetColorScheme: SetColorScheme = useCallback(
+    (colorScheme: ColorScheme) => {
+      if (appColorScheme !== colorScheme) {
+        appSetColorScheme(colorScheme)
       }
-      if (followDeviceColorScheme) {
-        setFollowDeviceColorScheme(false)
+
+      if (followDevice) {
+        setFollowDevice(false)
       }
     },
-    [
-      appColorScheme,
-      setAppColorScheme,
-      followDeviceColorScheme,
-      setFollowDeviceColorScheme,
-    ]
+    [appColorScheme, appSetColorScheme, followDevice, setFollowDevice]
   )
 
-  return setColorScheme
+  return controllerSetColorScheme
 }
 
 export default useSetColorScheme

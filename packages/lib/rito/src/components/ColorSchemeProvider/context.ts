@@ -1,14 +1,15 @@
 import { createContext } from 'react'
 
-import { ColorScheme } from '../../../types/color_scheme'
+import { ColorSchemeState } from '../../../types'
 import { ANY_COLOR_SCHEME } from '../../constants'
 
-export type ColorSchemeContextType = {
-  colorScheme: ColorScheme
-  setColorScheme: (colorScheme: ColorScheme) => void
-}
-
-export const ColorSchemeContext = createContext<ColorSchemeContextType>({
+const defaultColorSchemeState: ColorSchemeState = {
   colorScheme: ANY_COLOR_SCHEME,
   setColorScheme: () => {},
-})
+  followDevice: true,
+  setFollowDevice: () => {},
+}
+
+export const ColorSchemeContext = createContext<ColorSchemeState>(
+  defaultColorSchemeState
+)

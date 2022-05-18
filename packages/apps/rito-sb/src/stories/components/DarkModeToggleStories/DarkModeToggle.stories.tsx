@@ -62,10 +62,12 @@ const DarkModeToggleStory = (props: DarkModeToggleStoryProps) => {
   return (
     <FakeDeviceColorSchemeProvider deviceColorScheme={deviceColorScheme}>
       <ColorSchemeProvider
-        appColorScheme={appColorScheme}
-        setAppColorScheme={setAppColorScheme}
-        followDeviceColorScheme={followDeviceColorScheme as boolean}
-        setFollowDeviceColorScheme={setFollowDeviceColorScheme}
+        appColorSchemeState={{
+          colorScheme: appColorScheme,
+          setColorScheme: setAppColorScheme,
+          followDevice: followDeviceColorScheme as boolean,
+          setFollowDevice: setFollowDeviceColorScheme,
+        }}
       >
         <Vignette
           setDeviceColorScheme={setDeviceColorScheme}
