@@ -6,14 +6,20 @@ import {
   DARK_COLOR_SCHEME,
   LIGHT_COLOR_SCHEME,
 } from '../../constants'
-import { useDeviceColorScheme, usePrevious } from '../../hooks'
+import {
+  useDeviceColorScheme,
+  usePrevious,
+  useSetColorScheme,
+} from '../../hooks'
 
 import { ColorSchemeContext } from './context'
+export { ColorSchemeContext } from './context'
 
 const ColorSchemeProvider: React.FC<{
   appColorScheme: ColorScheme
   setAppColorScheme: (colorScheme: ColorScheme) => void
   followDeviceColorScheme: boolean
+  setFollowDeviceColorScheme: (followDeviceColorScheme: boolean) => void
   darkClassName?: string
   lightClassName?: string
   children: JSX.Element
@@ -21,6 +27,7 @@ const ColorSchemeProvider: React.FC<{
   appColorScheme,
   setAppColorScheme,
   followDeviceColorScheme,
+  setFollowDeviceColorScheme,
   darkClassName = 'rito-dark',
   lightClassName = 'rito-light',
   children,
@@ -67,8 +74,15 @@ const ColorSchemeProvider: React.FC<{
     }
   }, [colorScheme, appColorScheme, setAppColorScheme])
 
+  const setColorScheme = useSetColorScheme({
+    appColorScheme,
+    setAppColorScheme,
+    followDeviceColorScheme,
+    setFollowDeviceColorScheme,
+  })
+
   return (
-    <ColorSchemeContext.Provider value={colorScheme}>
+    <ColorSchemeContext.Provider value={{ colorScheme, setColorScheme }}>
       {children}
     </ColorSchemeContext.Provider>
   )

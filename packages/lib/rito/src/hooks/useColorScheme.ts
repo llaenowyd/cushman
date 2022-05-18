@@ -1,8 +1,11 @@
 import { useContext } from 'react'
 
-import { ColorScheme } from '../../types/color_scheme'
-import { ColorSchemeContext } from '../components/ColorSchemeProvider/context'
+import {
+  ColorSchemeContext,
+  ColorSchemeContextType,
+} from '../components/ColorSchemeProvider/context'
 
-const useColorScheme = (): ColorScheme => useContext(ColorSchemeContext)
+const useColorScheme = (): ColorSchemeContextType =>
+  useContext(ColorSchemeContext)
 
 export default useColorScheme

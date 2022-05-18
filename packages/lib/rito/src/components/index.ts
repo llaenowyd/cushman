@@ -1,5 +1,8 @@
 export { default as Button } from './Button'
-export { default as ColorSchemeProvider } from './ColorSchemeProvider'
+export {
+  default as ColorSchemeProvider,
+  ColorSchemeContext,
+} from './ColorSchemeProvider'
 export { default as DarkModeToggle } from './DarkModeToggle'
 export {
   default as DeviceColorSchemeProvider,
