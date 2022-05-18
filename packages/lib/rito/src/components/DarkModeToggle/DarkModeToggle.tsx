@@ -1,8 +1,7 @@
 import React, { useMemo, useState } from 'react'
 
-import { ColorScheme } from '../../../types/color_scheme'
 import { DARK_COLOR_SCHEME, LIGHT_COLOR_SCHEME } from '../../constants'
-import { useColorScheme } from '../../hooks'
+import { useColorSchemeState } from '../../hooks'
 import SlideIn from '../SlideIn'
 
 import Lock from './Lock'
@@ -12,15 +11,10 @@ import Unlock from './Unlock'
 
 import classes from './DarkModeToggle.module.css'
 
-export type SetColorScheme = (cs: ColorScheme) => void
-export type SetFollowDevice = (followDevice: boolean) => void
-
-const DarkModeToggle: React.FC<{
-  followDevice: boolean
-  setFollowDevice: SetFollowDevice
-}> = ({ followDevice, setFollowDevice }) => {
+const DarkModeToggle: React.FC = () => {
+  const { colorScheme, setColorScheme, followDevice, setFollowDevice } =
+    useColorSchemeState()
   const [isHovered, setIsHovered] = useState(false)
-  const { colorScheme, setColorScheme } = useColorScheme()
 
   const [onMouseEnter, onMouseLeave] = useMemo(
     () => [

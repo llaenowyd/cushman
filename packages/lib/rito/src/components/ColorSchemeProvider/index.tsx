@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 
 import { ColorSchemeState } from '../../../types'
 import { DARK_COLOR_SCHEME, LIGHT_COLOR_SCHEME } from '../../constants'
-import { useColorSchemeCombine, usePrevious } from '../../hooks'
+import { useColorSchemeStateCombine, usePrevious } from '../../hooks'
 
 import { ColorSchemeContext } from './context'
 export { ColorSchemeContext } from './context'
@@ -18,7 +18,7 @@ const ColorSchemeProvider: React.FC<{
   lightClassName = 'rito-light',
   children,
 }) => {
-  const contextValue = useColorSchemeCombine(appColorSchemeState)
+  const contextValue = useColorSchemeStateCombine(appColorSchemeState)
 
   const colorScheme = contextValue.colorScheme
   const previousColorScheme = usePrevious(colorScheme)

@@ -6,7 +6,7 @@ import { ColorSchemeState } from '../../types'
 import useDeviceColorScheme from './useDeviceColorScheme'
 import useSetColorScheme from './useSetColorScheme'
 
-const useColorSchemeCombine = (
+const useColorSchemeStateCombine = (
   appColorSchemeState: ColorSchemeState
 ): ColorSchemeState => {
   const deviceColorScheme = useDeviceColorScheme()
@@ -35,4 +35,4 @@ const useColorSchemeCombine = (
   }
 }
 
-export default useColorSchemeCombine
+export default useColorSchemeStateCombine
