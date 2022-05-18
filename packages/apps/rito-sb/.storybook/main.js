@@ -1,3 +1,4 @@
+const path = require('path')
 const { mergeConfig } = require('vite')
 
 module.exports = {
@@ -12,6 +13,7 @@ module.exports = {
   core: {
     builder: '@storybook/builder-vite',
   },
+  staticDirs: [path.join('..', 'public')],
   async viteFinal(config, { configType }) {
     return mergeConfig(config, {
       base: '',
