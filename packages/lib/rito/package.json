@@ -48,7 +48,10 @@
       "import": "./dist/rito.es.js",
       "require": "./dist/rito.umd.js"
     },
-    "./styles/*": "./dist/styles/*.css"
+    "./default-palettes.css": {
+      "import": "./dist/styles/default-palettes.css",
+      "require": "./dist/styles/default-palettes.css"
+    }
   },
   "sideEffects": false
 }

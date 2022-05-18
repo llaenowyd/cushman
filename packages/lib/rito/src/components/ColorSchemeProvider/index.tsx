@@ -1,47 +1,26 @@
-import React, { useEffect, useMemo } from 'react'
+import React, { useEffect } from 'react'
 
-import { ColorScheme } from '../../../types/color_scheme'
-import {
-  ANY_COLOR_SCHEME,
-  DARK_COLOR_SCHEME,
-  LIGHT_COLOR_SCHEME,
-} from '../../constants'
-import {
-  useDeviceColorScheme,
-  usePrevious,
-  useSetColorScheme,
-} from '../../hooks'
+import { ColorSchemeState } from '../../../types'
+import { DARK_COLOR_SCHEME, LIGHT_COLOR_SCHEME } from '../../constants'
+import { useColorSchemeStateCombine, usePrevious } from '../../hooks'
 
 import { ColorSchemeContext } from './context'
 export { ColorSchemeContext } from './context'
 
 const ColorSchemeProvider: React.FC<{
-  appColorScheme: ColorScheme
-  setAppColorScheme: (colorScheme: ColorScheme) => void
-  followDeviceColorScheme: boolean
-  setFollowDeviceColorScheme: (followDeviceColorScheme: boolean) => void
+  appColorSchemeState: ColorSchemeState
   darkClassName?: string
   lightClassName?: string
   children: JSX.Element
 }> = ({
-  appColorScheme,
-  setAppColorScheme,
-  followDeviceColorScheme,
-  setFollowDeviceColorScheme,
+  appColorSchemeState,
   darkClassName = 'rito-dark',
   lightClassName = 'rito-light',
   children,
 }) => {
-  const deviceColorScheme = useDeviceColorScheme()
+  const contextValue = useColorSchemeStateCombine(appColorSchemeState)
 
-  const colorScheme: ColorScheme = useMemo(
-    () =>
-      followDeviceColorScheme && ANY_COLOR_SCHEME !== deviceColorScheme
-        ? deviceColorScheme
-        : appColorScheme,
-    [followDeviceColorScheme, deviceColorScheme, appColorScheme]
-  )
-
+  const colorScheme = contextValue.colorScheme
   const previousColorScheme = usePrevious(colorScheme)
 
   useEffect(() => {
@@ -68,21 +47,8 @@ const ColorSchemeProvider: React.FC<{
     }
   }, [colorScheme, previousColorScheme])
 
-  useEffect(() => {
-    if (appColorScheme !== colorScheme) {
-      setAppColorScheme(colorScheme)
-    }
-  }, [colorScheme, appColorScheme, setAppColorScheme])
-
-  const setColorScheme = useSetColorScheme({
-    appColorScheme,
-    setAppColorScheme,
-    followDeviceColorScheme,
-    setFollowDeviceColorScheme,
-  })
-
   return (
-    <ColorSchemeContext.Provider value={{ colorScheme, setColorScheme }}>
+    <ColorSchemeContext.Provider value={contextValue}>
       {children}
     </ColorSchemeContext.Provider>
   )
