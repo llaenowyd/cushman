@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react'
 
-import { ColorScheme } from '@a110/rito/dist/types/color_scheme'
+import { ColorScheme } from '@a110/rito/types'
 
 const ColorSchemeSelect: React.FC<{
   colorScheme: ColorScheme

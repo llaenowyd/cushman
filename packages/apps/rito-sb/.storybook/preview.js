@@ -6,6 +6,7 @@ import '@a110/rito/default-palettes.css'
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' }, // tbd maybe don't need
   controls: {
+    expanded: true,
     matchers: {
       color: /(background|color)$/i, // tbd maybe don't need
       date: /Date$/, // tbd maybe don't need
@@ -20,6 +21,9 @@ export const parameters = {
     // ............. because it will corrupt local storage
     darkClass: 'rito-dark',
     lightClass: 'rito-light',
+    classTarget: 'html',
     stylePreview: true,
   },
+  viewMode: 'docs',
+  previewTabs: { 'storybook/docs/panel': { index: -1 } },
 }

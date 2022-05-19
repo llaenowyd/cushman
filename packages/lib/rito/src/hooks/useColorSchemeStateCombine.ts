@@ -1,13 +1,33 @@
 import { useMemo } from 'react'
 
-import { ANY_COLOR_SCHEME } from '../constants'
-import { ColorSchemeState } from '../../types'
+import { ANY_COLOR_SCHEME, LIGHT_COLOR_SCHEME } from '../constants'
+import { ColorScheme, ColorSchemeState } from '../../types'
 
 import useDeviceColorScheme from './useDeviceColorScheme'
 import useSetColorScheme from './useSetColorScheme'
 
+const pickColorScheme = (
+  deviceColorScheme: ColorScheme,
+  defaultColorScheme: ColorScheme,
+  appColorScheme?: ColorScheme,
+  followDevice?: boolean
+): ColorScheme => {
+  if (null == appColorScheme) {
+    return ANY_COLOR_SCHEME === deviceColorScheme
+      ? defaultColorScheme
+      : deviceColorScheme
+  }
+
+  return followDevice && ANY_COLOR_SCHEME !== deviceColorScheme
+    ? deviceColorScheme
+    : ANY_COLOR_SCHEME === appColorScheme
+    ? defaultColorScheme
+    : appColorScheme
+}
+
 const useColorSchemeStateCombine = (
-  appColorSchemeState: ColorSchemeState
+  appColorSchemeState?: ColorSchemeState,
+  defaultColorScheme: ColorScheme = LIGHT_COLOR_SCHEME
 ): ColorSchemeState => {
   const deviceColorScheme = useDeviceColorScheme()
 
@@ -17,21 +37,24 @@ const useColorSchemeStateCombine = (
     colorScheme: appColorScheme,
     followDevice,
     setFollowDevice,
-  } = appColorSchemeState
+  } = appColorSchemeState ?? {}
 
   const colorScheme = useMemo(
     () =>
-      followDevice && ANY_COLOR_SCHEME !== deviceColorScheme
-        ? deviceColorScheme
-        : appColorScheme,
-    [followDevice, deviceColorScheme, appColorScheme]
+      pickColorScheme(
+        deviceColorScheme,
+        defaultColorScheme,
+        appColorScheme,
+        followDevice
+      ),
+    [deviceColorScheme, appColorScheme, followDevice, defaultColorScheme]
   )
 
   return {
     colorScheme,
     setColorScheme,
-    followDevice,
-    setFollowDevice,
+    followDevice: followDevice ?? true,
+    setFollowDevice: setFollowDevice ?? (() => {}),
   }
 }
 

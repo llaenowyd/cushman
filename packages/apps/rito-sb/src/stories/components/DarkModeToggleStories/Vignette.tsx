@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react'
 
 import { DarkModeToggle, useDeviceColorScheme } from '@a110/rito'
-import { ColorScheme } from '@a110/rito/dist/types/color_scheme'
+import { ColorScheme } from '@a110/rito/types'
 
 import ColorSchemeSelect from './ColorSchemeSelect'
 import FlagSelect from './FlagSelect'
@@ -99,10 +99,7 @@ const Vignette: React.FC<{
         </div>
       </div>
       <div className={classes.featureCard}>
-        <DarkModeToggle
-          followDevice={followDeviceColorScheme as boolean}
-          setFollowDevice={setFollowDeviceColorScheme}
-        />
+        <DarkModeToggle />
       </div>
     </div>
   )

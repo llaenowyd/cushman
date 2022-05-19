@@ -8,6 +8,15 @@ module.exports = {
     '@storybook/addon-essentials',
     '@storybook/addon-interactions',
     'storybook-dark-mode',
+    {
+      name: '@storybook/addon-docs',
+      options: {
+        configureJSX: true,
+        babelOptions: {},
+        sourceLoaderOptions: { parser: 'typescript' },
+        transcludeMarkdown: true,
+      },
+    },
   ],
   framework: '@storybook/react',
   core: {
