@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from 'react'
 
-import { ColorScheme } from '../../../types/color_scheme'
+import { ColorScheme } from '../../../types'
 
 import { ColorSchemeMatch, getColorSchemeMatch } from './util'
 

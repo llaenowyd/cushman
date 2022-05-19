@@ -1,6 +1,6 @@
 // cf https://blog.bitsrc.io/how-to-sync-your-react-app-with-the-system-color-scheme-78c0ad00074b
 
-import { ColorScheme } from '../../../types/color_scheme'
+import { ColorScheme } from '../../../types'
 
 import {
   ANY_COLOR_SCHEME,

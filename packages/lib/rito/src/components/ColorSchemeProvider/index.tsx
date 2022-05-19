@@ -1,55 +1,90 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 
-import { ColorSchemeState } from '../../../types'
+import {
+  ColorSchemeState,
+  DarkColorScheme,
+  LightColorScheme,
+} from '../../../types'
 import { DARK_COLOR_SCHEME, LIGHT_COLOR_SCHEME } from '../../constants'
-import { useColorSchemeStateCombine, usePrevious } from '../../hooks'
+import { useColorSchemeStateCombine } from '../../hooks'
 
 import { ColorSchemeContext } from './context'
 export { ColorSchemeContext } from './context'
 
+export type ActualColorScheme = DarkColorScheme | LightColorScheme
+
+const useForceRender = (): (() => void) => {
+  const [, setState] = useState<number>(0)
+
+  return () => {
+    setState((prevState: number) => 1 + prevState)
+  }
+}
+
 const ColorSchemeProvider: React.FC<{
-  appColorSchemeState: ColorSchemeState
+  appColorSchemeState?: ColorSchemeState
   darkClassName?: string
   lightClassName?: string
+  defaultColorScheme?: ActualColorScheme
   children: JSX.Element
 }> = ({
   appColorSchemeState,
   darkClassName = 'rito-dark',
   lightClassName = 'rito-light',
+  defaultColorScheme,
   children,
 }) => {
-  const contextValue = useColorSchemeStateCombine(appColorSchemeState)
+  // const anchorElRef = useRef<HTMLElement>(null)
+  const divRef = useRef<HTMLDivElement>(null)
+  const addedClassNameRef = useRef<string>()
+
+  const forceRender = useForceRender()
+
+  const contextValue = useColorSchemeStateCombine(
+    appColorSchemeState,
+    defaultColorScheme
+  )
 
   const colorScheme = contextValue.colorScheme
-  const previousColorScheme = usePrevious(colorScheme)
 
   useEffect(() => {
-    if (colorScheme === previousColorScheme) {
+    const div = divRef.current
+
+    if (!div) {
       return
     }
 
-    const root = window?.document?.documentElement
+    const classNameToAdd =
+      DARK_COLOR_SCHEME === colorScheme
+        ? darkClassName
+        : LIGHT_COLOR_SCHEME === colorScheme
+        ? lightClassName
+        : undefined
 
-    if (!root) {
-      return
+    const addedClassName = addedClassNameRef.current
+
+    const classNameToRemove =
+      !!addedClassName && addedClassName !== classNameToAdd
+        ? addedClassName
+        : undefined
+
+    if (classNameToAdd) {
+      div.classList.add(classNameToAdd)
     }
 
-    if (DARK_COLOR_SCHEME === colorScheme) {
-      root.classList.add(darkClassName)
-    } else if (LIGHT_COLOR_SCHEME === colorScheme) {
-      root.classList.add(lightClassName)
+    if (classNameToRemove) {
+      div.classList.remove(classNameToRemove)
     }
 
-    if (DARK_COLOR_SCHEME === previousColorScheme) {
-      root.classList.remove(darkClassName)
-    } else if (LIGHT_COLOR_SCHEME === previousColorScheme) {
-      root.classList.remove(lightClassName)
+    if (classNameToAdd || classNameToRemove) {
+      addedClassNameRef.current = classNameToAdd
+      forceRender()
     }
-  }, [colorScheme, previousColorScheme])
+  }, [colorScheme, lightClassName, darkClassName])
 
   return (
     <ColorSchemeContext.Provider value={contextValue}>
-      {children}
+      <div ref={divRef}>{children}</div>
     </ColorSchemeContext.Provider>
   )
 }

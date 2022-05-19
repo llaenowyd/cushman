@@ -1,24 +1,17 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 
 import {
   ANY_COLOR_SCHEME,
   ColorSchemeProvider,
   DarkModeToggle,
-  DeviceColorSchemeContext,
 } from '@a110/rito'
-import { ColorScheme } from '@a110/rito/dist/types/color_scheme'
+import { ColorScheme } from '@a110/rito/types'
 
+import { colorSchemeArgType } from '../../util'
+import FakeDeviceColorSchemeProvider from '../FakeDeviceColorSchemeProvider'
 import Vignette from './Vignette'
-
-const FakeDeviceColorSchemeProvider: React.FC<{
-  deviceColorScheme: ColorScheme
-  children: JSX.Element
-}> = ({ deviceColorScheme, children }) => (
-  <DeviceColorSchemeContext.Provider value={deviceColorScheme}>
-    {children}
-  </DeviceColorSchemeContext.Provider>
-)
+import * as examples from './examples'
 
 type DarkModeToggleStoryProps = {
   appColorScheme: ColorScheme
@@ -81,11 +74,6 @@ const DarkModeToggleStory = (props: DarkModeToggleStoryProps) => {
   )
 }
 
-const colorSchemeArgType = {
-  options: ['dark', 'light', 'no-preference'],
-  control: { type: 'select' },
-}
-
 export default {
   title: 'rito/component/DarkModeToggle',
   component: DarkModeToggle,
@@ -114,4 +102,7 @@ Default.args = {
   deviceColorScheme: 'dark',
   appColorScheme: 'light',
   followDevice: true,
+}
+Default.parameters = {
+  docs: { source: { code: examples.defaultExample } },
 }

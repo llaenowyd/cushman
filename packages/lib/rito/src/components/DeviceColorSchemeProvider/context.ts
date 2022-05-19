@@ -1,6 +1,6 @@
 import { createContext } from 'react'
 
-import { ColorScheme } from '../../../types/color_scheme'
+import { ColorScheme } from '../../../types'
 import { ANY_COLOR_SCHEME } from '../../constants'
 
 export const DeviceColorSchemeContext =

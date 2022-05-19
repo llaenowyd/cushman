@@ -1,8 +1,4 @@
-import {
-  AnyColorScheme,
-  DarkColorScheme,
-  LightColorScheme,
-} from '../types/color_scheme'
+import { AnyColorScheme, DarkColorScheme, LightColorScheme } from '../types'
 
 export const ANY_COLOR_SCHEME: AnyColorScheme = 'no-preference'
 export const DARK_COLOR_SCHEME: DarkColorScheme = 'dark'
