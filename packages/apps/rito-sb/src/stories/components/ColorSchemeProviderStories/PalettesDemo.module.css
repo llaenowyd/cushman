@@ -1,0 +1,117 @@
+.lightPurplePalette {
+  --bg-primary: #faf5ff;
+  --bg-secondary: #e9d5ff;
+  --bg-control: #d8b4fe;
+  --bg-control-disabled: #d1d5db;
+  --bg-obscure: #7e22ce;
+  --text-primary: #1d092d;
+  --text-secondary: #32104c;
+  --text-control: #32104c;
+  --text-control-disabled: #6b7280;
+  --color-shadow: #9ca3af;
+  --anchor-link: #1d4ed8;
+  --anchor-visited: #6d28d9;
+  --color-highlight: #ddd;
+}
+
+.darkPurplePalette {
+  --bg-primary: #1d092d;
+  --bg-secondary: #32104c;
+  --bg-control: #6b21a8;
+  --bg-control-disabled: #6b7280;
+  --bg-obscure: #7e22ce;
+  --text-primary: #faf5ff;
+  --text-secondary: #e9d5ff;
+  --text-control: #e9d5ff;
+  --text-control-disabled: #d1d5db;
+  --color-shadow: #111;
+  --anchor-link: #7dd3fc;
+  --anchor-visited: #a5b4fc;
+  --color-highlight: #333;
+}
+
+.lightGreenPalette {
+  --bg-primary: #f7fee7;
+  --bg-secondary: #ecfccb;
+  --bg-control: #a3e635;
+  --bg-control-disabled: #d1d5db;
+  --bg-obscure: #3f6212;
+  --text-primary: #0f1806;
+  --text-secondary: #1f300c;
+  --text-control: #365314;
+  --text-control-disabled: #6b7280;
+  --color-shadow: #9ca3af;
+  --anchor-link: #064e3b;
+  --anchor-visited: #701a75;
+  --color-highlight: #ddd;
+}
+
+.darkGreenPalette {
+  --bg-primary: #0f1806;
+  --bg-secondary: #1f300c;
+  --bg-control: #365314;
+  --bg-control-disabled: #6b7280;
+  --bg-obscure: #3f6212;
+  --text-primary: #f7fee7;
+  --text-secondary: #ecfccb;
+  --text-control: #e0f2fe;
+  --text-control-disabled: #d1d5db;
+  --color-shadow: #111;
+  --anchor-link: #a7f3d0;
+  --anchor-visited: #f5d0fe;
+  --color-highlight: #333;
+}
+
+.lightOrangePalette {
+  --bg-primary: #fff7ed;
+  --bg-secondary: #ffedd5;
+  --bg-control: #fed7aa;
+  --bg-control-disabled: #d1d5db;
+  --bg-obscure: #ea580c;
+  --text-primary: #210c05;
+  --text-secondary: #4b1b0b;
+  --text-control: #7c2d12;
+  --text-control-disabled: #6b7280;
+  --color-shadow: #9ca3af;
+  --anchor-link: #123a47;
+  --anchor-visited: #6d28d9;
+  --color-highlight: #ddd;
+}
+
+.darkOrangePalette {
+  --bg-primary: #210c05;
+  --bg-secondary: #4b1b0b;
+  --bg-control: #7c2d12;
+  --bg-control-disabled: #6b7280;
+  --bg-obscure: #fb923c;
+  --text-primary: #fff7ed;
+  --text-secondary: #ffedd5;
+  --text-control: #fed7aa;
+  --text-control-disabled: #d1d5db;
+  --color-shadow: #111;
+  --anchor-link: #88cbe1;
+  --anchor-visited: #a5b4fc;
+  --color-highlight: #333;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  gap: 1rem;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+.buttonRow {
+  padding-left: 1rem;
+}
+
+.subContainer {
+  display: flex;
+  gap: 1rem;
+}
+
+.evenChild {
+  flex-grow: 1;
+}

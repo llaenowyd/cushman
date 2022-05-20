@@ -84,10 +84,3 @@
   width: 100%;
   text-align: center;
 }
-
-.featureCard {
-  border-radius: 0.5rem;
-  padding: 1rem;
-  background-color: var(--bg-secondary);
-  box-shadow: 2px 2px 2px 0 var(--color-shadow);
-}

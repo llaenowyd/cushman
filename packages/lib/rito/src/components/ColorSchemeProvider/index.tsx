@@ -25,12 +25,14 @@ const useForceRender = (): (() => void) => {
 
 const ColorSchemeProviderImpl: React.FC<{
   appColorSchemeState?: ColorSchemeState
+  className?: string
   darkClassName?: string
   lightClassName?: string
   defaultColorScheme?: ActualColorScheme
   children: JSX.Element
 }> = ({
   appColorSchemeState,
+  className,
   darkClassName = 'rito-dark',
   lightClassName = 'rito-light',
   defaultColorScheme,
@@ -86,7 +88,9 @@ const ColorSchemeProviderImpl: React.FC<{
 
   return (
     <ColorSchemeContext.Provider value={contextValue}>
-      <div ref={divRef}>{children}</div>
+      <div ref={divRef} className={className}>
+        {children}
+      </div>
     </ColorSchemeContext.Provider>
   )
 }
@@ -94,6 +98,7 @@ const ColorSchemeProviderImpl: React.FC<{
 const ColorSchemeProvider: React.FC<{
   mockDeviceColorScheme?: ColorScheme
   appColorSchemeState?: ColorSchemeState
+  className?: string
   darkClassName?: string
   lightClassName?: string
   defaultColorScheme?: ActualColorScheme
