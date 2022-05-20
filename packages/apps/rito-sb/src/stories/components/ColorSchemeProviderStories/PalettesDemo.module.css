@@ -108,10 +108,29 @@
 }
 
 .subContainer {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
   gap: 1rem;
 }
 
-.evenChild {
-  flex-grow: 1;
+.subContainerElement {
+  grid-column: span 12 / span 12;
+}
+
+@media (min-width: 480px) {
+  .subContainerElement {
+    grid-column: span 6 / span 6;
+  }
+}
+
+@media (min-width: 640px) {
+  .subContainerElement {
+    grid-column: span 4 / span 4;
+  }
+}
+
+@media (min-width: 1024px) {
+  .subContainerElement {
+    grid-column: span 3 / span 3;
+  }
 }

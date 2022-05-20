@@ -32,9 +32,9 @@ const PalettesDemoImpl: React.FC = () => {
           />
         </div>
         <div className={classes.subContainer}>
-          <DemoPanel className={classes.evenChild} label="Default" />
+          <DemoPanel className={classes.subContainerElement} label="Default" />
           <ColorSchemeProvider
-            className={classes.evenChild}
+            className={classes.subContainerElement}
             mockDeviceColorScheme={mockDeviceColorScheme}
             lightClassName={classes.lightPurplePalette}
             darkClassName={classes.darkPurplePalette}
@@ -42,7 +42,7 @@ const PalettesDemoImpl: React.FC = () => {
             <DemoPanel label="Purple" />
           </ColorSchemeProvider>
           <ColorSchemeProvider
-            className={classes.evenChild}
+            className={classes.subContainerElement}
             mockDeviceColorScheme={mockDeviceColorScheme}
             lightClassName={classes.lightGreenPalette}
             darkClassName={classes.darkGreenPalette}
@@ -50,7 +50,7 @@ const PalettesDemoImpl: React.FC = () => {
             <DemoPanel label="Green" />
           </ColorSchemeProvider>
           <ColorSchemeProvider
-            className={classes.evenChild}
+            className={classes.subContainerElement}
             mockDeviceColorScheme={mockDeviceColorScheme}
             lightClassName={classes.lightOrangePalette}
             darkClassName={classes.darkOrangePalette}

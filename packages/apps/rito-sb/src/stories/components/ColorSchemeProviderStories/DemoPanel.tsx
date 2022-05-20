@@ -15,7 +15,9 @@ const DemoPanel: React.FC<{
       <div className={classes.containerTitle}>secondary</div>
       <div className={classes.subContainer}>
         <div className={classes.containerTitle}>primary</div>
-        <Button label={label} onClick={noOp} />
+        <div className={classes.buttonRow}>
+          <Button label={label} onClick={noOp} />
+        </div>
       </div>
     </div>
   )
