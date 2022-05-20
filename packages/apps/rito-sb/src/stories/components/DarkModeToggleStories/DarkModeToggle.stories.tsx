@@ -33,7 +33,7 @@ const DarkModeToggleStory = (props: DarkModeToggleStoryProps) => {
 
   return (
     <ColorSchemeProvider
-      mockDeviceColorScheme={mockDeviceColorScheme}
+      colorScheme={mockDeviceColorScheme}
       appColorSchemeState={{
         colorScheme: appColorScheme,
         setColorScheme: setAppColorScheme,

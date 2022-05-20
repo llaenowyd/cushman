@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useMemo } from 'react'
 
 import {
   ColorScheme,
@@ -15,15 +15,10 @@ export { ColorSchemeContext } from './context'
 
 export type ActualColorScheme = DarkColorScheme | LightColorScheme
 
-const useForceRender = (): (() => void) => {
-  const [, setState] = useState<number>(0)
-
-  return () => {
-    setState((prevState: number) => 1 + prevState)
-  }
-}
+const noOp = () => {}
 
 const ColorSchemeProviderImpl: React.FC<{
+  colorScheme?: ColorScheme
   appColorSchemeState?: ColorSchemeState
   className?: string
   darkClassName?: string
@@ -31,6 +26,7 @@ const ColorSchemeProviderImpl: React.FC<{
   defaultColorScheme?: ActualColorScheme
   children: JSX.Element
 }> = ({
+  colorScheme,
   appColorSchemeState,
   className,
   darkClassName = 'rito-dark',
@@ -38,65 +34,53 @@ const ColorSchemeProviderImpl: React.FC<{
   defaultColorScheme,
   children,
 }) => {
-  // const anchorElRef = useRef<HTMLElement>(null)
-  const divRef = useRef<HTMLDivElement>(null)
-  const addedClassNameRef = useRef<string>()
-
-  const forceRender = useForceRender()
+  const aCSSOrConstColorScheme = useMemo<ColorSchemeState | undefined>(
+    () =>
+      appColorSchemeState ??
+      (colorScheme
+        ? ({
+            colorScheme,
+            setColorScheme: noOp,
+            followDevice: false,
+            setFollowDevice: noOp,
+          } as ColorSchemeState)
+        : undefined),
+    [colorScheme, appColorSchemeState]
+  )
 
   const contextValue = useColorSchemeStateCombine(
-    appColorSchemeState,
+    aCSSOrConstColorScheme,
     defaultColorScheme
   )
 
-  const colorScheme = contextValue.colorScheme
+  const effectiveColorScheme = contextValue.colorScheme
 
-  useEffect(() => {
-    const div = divRef.current
-
-    if (!div) {
-      return
-    }
-
-    const classNameToAdd =
-      DARK_COLOR_SCHEME === colorScheme
+  const combinedClassName = useMemo(() => {
+    const paletteClassName =
+      DARK_COLOR_SCHEME === effectiveColorScheme
         ? darkClassName
-        : LIGHT_COLOR_SCHEME === colorScheme
+        : LIGHT_COLOR_SCHEME === effectiveColorScheme
         ? lightClassName
         : undefined
 
-    const addedClassName = addedClassNameRef.current
+    const classNames = [paletteClassName]
 
-    const classNameToRemove =
-      !!addedClassName && addedClassName !== classNameToAdd
-        ? addedClassName
-        : undefined
-
-    if (classNameToAdd) {
-      div.classList.add(classNameToAdd)
+    if (className) {
+      classNames.push(className)
     }
 
-    if (classNameToRemove) {
-      div.classList.remove(classNameToRemove)
-    }
-
-    if (classNameToAdd || classNameToRemove) {
-      addedClassNameRef.current = classNameToAdd
-      forceRender()
-    }
-  }, [colorScheme, lightClassName, darkClassName])
+    return classNames.join(' ')
+  }, [effectiveColorScheme, className, lightClassName, darkClassName])
 
   return (
     <ColorSchemeContext.Provider value={contextValue}>
-      <div ref={divRef} className={className}>
-        {children}
-      </div>
+      <div className={combinedClassName}>{children}</div>
     </ColorSchemeContext.Provider>
   )
 }
 
 const ColorSchemeProvider: React.FC<{
-  mockDeviceColorScheme?: ColorScheme
+  colorScheme?: ColorScheme
   appColorSchemeState?: ColorSchemeState
   className?: string
   darkClassName?: string
@@ -104,10 +88,10 @@ const ColorSchemeProvider: React.FC<{
   defaultColorScheme?: ActualColorScheme
   children: JSX.Element
 }> = props => {
-  const { children, mockDeviceColorScheme, ...restProps } = props
+  const { children, ...restProps } = props
 
   return (
-    <DeviceColorSchemeProvider mockValue={mockDeviceColorScheme}>
+    <DeviceColorSchemeProvider>
       <ColorSchemeProviderImpl {...restProps}>
         {children}
       </ColorSchemeProviderImpl>
