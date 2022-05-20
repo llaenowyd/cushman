@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 
 import {
@@ -9,18 +9,17 @@ import {
 import { ColorScheme } from '@a110/rito/types'
 
 import { colorSchemeArgType } from '../../util'
-import FakeDeviceColorSchemeProvider from '../FakeDeviceColorSchemeProvider'
 import Vignette from './Vignette'
 import * as examples from './examples'
 
 type DarkModeToggleStoryProps = {
+  mockDeviceColorScheme: ColorScheme
   appColorScheme: ColorScheme
-  fakeDeviceColorScheme: ColorScheme
   followDevice: boolean
 }
 
 const DarkModeToggleStory = (props: DarkModeToggleStoryProps) => {
-  const deviceColorScheme: ColorScheme = props.fakeDeviceColorScheme
+  const mockDeviceColorScheme: ColorScheme = props.mockDeviceColorScheme
 
   const initialAppColorScheme: ColorScheme = props.appColorScheme
   const initialFollowDevice: boolean = props.followDevice
@@ -33,23 +32,22 @@ const DarkModeToggleStory = (props: DarkModeToggleStoryProps) => {
   >(initialFollowDevice)
 
   return (
-    <FakeDeviceColorSchemeProvider deviceColorScheme={deviceColorScheme}>
-      <ColorSchemeProvider
-        appColorSchemeState={{
-          colorScheme: appColorScheme,
-          setColorScheme: setAppColorScheme,
-          followDevice: followDeviceColorScheme as boolean,
-          setFollowDevice: setFollowDeviceColorScheme,
-        }}
-      >
-        <Vignette
-          appColorScheme={appColorScheme}
-          setAppColorScheme={setAppColorScheme}
-          followDeviceColorScheme={followDeviceColorScheme}
-          setFollowDeviceColorScheme={setFollowDeviceColorScheme}
-        />
-      </ColorSchemeProvider>
-    </FakeDeviceColorSchemeProvider>
+    <ColorSchemeProvider
+      mockDeviceColorScheme={mockDeviceColorScheme}
+      appColorSchemeState={{
+        colorScheme: appColorScheme,
+        setColorScheme: setAppColorScheme,
+        followDevice: followDeviceColorScheme as boolean,
+        setFollowDevice: setFollowDeviceColorScheme,
+      }}
+    >
+      <Vignette
+        appColorScheme={appColorScheme}
+        setAppColorScheme={setAppColorScheme}
+        followDeviceColorScheme={followDeviceColorScheme}
+        setFollowDeviceColorScheme={setFollowDeviceColorScheme}
+      />
+    </ColorSchemeProvider>
   )
 }
 
@@ -57,7 +55,7 @@ export default {
   title: 'rito/component/DarkModeToggle',
   component: DarkModeToggle,
   argTypes: {
-    fakeDeviceColorScheme: {
+    mockDeviceColorScheme: {
       ...colorSchemeArgType,
       description: 'fake device color scheme',
     },
@@ -78,7 +76,7 @@ const Template: ComponentStory<typeof DarkModeToggleStory> = args => (
 
 export const Default = Template.bind({})
 Default.args = {
-  fakeDeviceColorScheme: 'dark',
+  mockDeviceColorScheme: 'dark',
   appColorScheme: 'light',
   followDevice: true,
 }

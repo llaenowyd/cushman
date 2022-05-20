@@ -2,12 +2,10 @@ import React from 'react'
 
 import styleClasses from './styles.module.css'
 
+// tbd move to regular mdx and revise
 const Info: React.FC = () => {
   return (
     <div className={styleClasses.container}>
-      <div>
-        ColorSchemeProvider should be used within DeviceColorSchemeProvider.
-      </div>
       <div>
         ColorSchemeProvider can optionally be injected with application color
         scheme. The application setting may be different than the device
@@ -15,8 +13,7 @@ const Info: React.FC = () => {
       </div>
       <div>
         When the application color scheme is not supplied, ColorSchemeProvider
-        just defers to the device color scheme provided by the enclosing
-        DeviceColorSchemeProvider.
+        just defers to the device color scheme.
       </div>
       <div>
         ColorSchemeProvider is also responsible for adding or removing a style

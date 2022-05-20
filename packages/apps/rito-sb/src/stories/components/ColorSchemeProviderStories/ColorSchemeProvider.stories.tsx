@@ -5,7 +5,6 @@ import { ColorSchemeProvider } from '@a110/rito'
 import { ColorScheme, ColorSchemeState } from '@a110/rito/types'
 
 import { colorSchemeArgType } from '../../util'
-import FakeDeviceColorSchemeProvider from '../FakeDeviceColorSchemeProvider'
 
 import Info from './Info'
 import * as examples from './examples'
@@ -15,14 +14,14 @@ import styleClasses from './styles.module.css'
 const noop = () => {}
 
 const ColorSchemeProviderStory: React.FC<{
-  fakeDeviceColorScheme: ColorScheme
+  mockDeviceColorScheme: ColorScheme
   injectAppColorSchemeState: boolean
   appColorScheme: ColorScheme
   appFollowDevice: boolean
   defaultColorScheme: 'dark' | 'light' | undefined
   supplyPaletteOverrides: boolean
 }> = ({
-  fakeDeviceColorScheme,
+  mockDeviceColorScheme,
   injectAppColorSchemeState,
   appColorScheme,
   appFollowDevice,
@@ -60,18 +59,17 @@ const ColorSchemeProviderStory: React.FC<{
   )
 
   return (
-    <FakeDeviceColorSchemeProvider deviceColorScheme={fakeDeviceColorScheme}>
-      <ColorSchemeProvider
-        appColorSchemeState={
-          injectAppColorSchemeState ? appColorSchemeState : undefined
-        }
-        darkClassName={darkClassName}
-        lightClassName={lightClassName}
-        defaultColorScheme={defaultColorScheme}
-      >
-        <Info />
-      </ColorSchemeProvider>
-    </FakeDeviceColorSchemeProvider>
+    <ColorSchemeProvider
+      mockDeviceColorScheme={mockDeviceColorScheme}
+      appColorSchemeState={
+        injectAppColorSchemeState ? appColorSchemeState : undefined
+      }
+      darkClassName={darkClassName}
+      lightClassName={lightClassName}
+      defaultColorScheme={defaultColorScheme}
+    >
+      <Info />
+    </ColorSchemeProvider>
   )
 }
 
@@ -79,7 +77,7 @@ export default {
   title: 'rito/component/ColorSchemeProvider',
   component: ColorSchemeProvider,
   argTypes: {
-    fakeDeviceColorScheme: {
+    mockDeviceColorScheme: {
       ...colorSchemeArgType,
       description: 'mock device color scheme',
     },
@@ -120,7 +118,7 @@ const Template: ComponentStory<typeof ColorSchemeProviderStory> = args => (
 
 export const Default = Template.bind({})
 Default.args = {
-  fakeDeviceColorScheme: 'light',
+  mockDeviceColorScheme: 'light',
   injectAppColorSchemeState: false,
   appColorScheme: 'light',
   appFollowDevice: true,
@@ -133,7 +131,7 @@ Default.parameters = {
 
 export const InjectedAppState = Template.bind({})
 InjectedAppState.args = {
-  fakeDeviceColorScheme: 'light',
+  mockDeviceColorScheme: 'light',
   injectAppColorSchemeState: true,
   appColorScheme: 'light',
   appFollowDevice: true,
@@ -146,7 +144,7 @@ InjectedAppState.parameters = {
 
 export const CustomPalettes = Template.bind({})
 CustomPalettes.args = {
-  fakeDeviceColorScheme: 'light',
+  mockDeviceColorScheme: 'light',
   injectAppColorSchemeState: false,
   appColorScheme: 'light',
   appFollowDevice: true,
