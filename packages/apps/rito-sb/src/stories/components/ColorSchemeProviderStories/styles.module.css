@@ -1,9 +1,17 @@
-.textbox {
+.textBox {
   background-color: var(--bg-primary);
   color: var(--text-primary);
   padding: 2rem;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  border-radius: 0.25rem;
+}
+
+.widgetBox {
+  display: inline-block;
+  background-color: var(--bg-secondary);
+  color: var(--text-secondary);
+  padding: 2rem;
   border-radius: 0.25rem;
 }

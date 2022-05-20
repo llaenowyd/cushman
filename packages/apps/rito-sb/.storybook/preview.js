@@ -36,7 +36,22 @@ export const parameters = {
   },
   options: {
     storySort: {
-      order: ['intro', 'rito', ['component', 'hook']],
+      order: [
+        'intro',
+        'rito',
+        [
+          'component',
+          [
+            'Anchor',
+            'Button',
+            'ColorSchemeProvider',
+            ['Default', 'Application State', 'Custom Palettes'],
+            'DarkModeToggle',
+            '*',
+          ],
+          'hook',
+        ],
+      ],
     },
   },
 }
