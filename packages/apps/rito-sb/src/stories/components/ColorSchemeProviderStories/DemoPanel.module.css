@@ -1,0 +1,25 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  gap: 1rem;
+  background-color: var(--bg-secondary);
+  color: var(--text-secondary);
+  border-radius: 0.25rem;
+  box-shadow: 2px 2px 2px 0 var(--color-shadow);
+}
+
+.containerTitle {
+  font-size: 80%;
+}
+
+.subContainer {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  gap: 1rem;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  border-radius: 0.25rem;
+  box-shadow: 2px 2px 2px 0 var(--color-shadow);
+}

@@ -74,7 +74,7 @@ const ColorSchemeProviderStory: React.FC<{
 }
 
 export default {
-  title: 'rito/component/ColorSchemeProvider',
+  title: 'rito/component/ColorSchemeProviderB',
   component: ColorSchemeProvider,
   argTypes: {
     mockDeviceColorScheme: {

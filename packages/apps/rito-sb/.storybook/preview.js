@@ -34,4 +34,9 @@ export const parameters = {
     source: { format: false },
     container: DocsContainer,
   },
+  options: {
+    storySort: {
+      order: ['intro', 'rito', ['component', 'hook']],
+    },
+  },
 }

@@ -1,34 +1,9 @@
-.container {
+.textbox {
   background-color: var(--bg-primary);
   color: var(--text-primary);
-  padding: 1rem;
+  padding: 2rem;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-}
-
-.story-dark {
-  --bg-primary: #111;
-  --bg-secondary: #333;
-  --bg-control: #ccc;
-  --bg-control-disabled: #777;
-  --bg-obscure: #777;
-  --text-primary: #eee;
-  --text-secondary: #bbb;
-  --text-control: #ddd;
-  --text-control-disabled: #bbb;
-  --color-shadow: #222;
-}
-
-.story-light {
-  --bg-primary: #eee;
-  --bg-secondary: #bbb;
-  --bg-control: #444;
-  --bg-control-disabled: #666;
-  --bg-obscure: #bbb;
-  --text-primary: #111;
-  --text-secondary: #333;
-  --text-control: #222;
-  --text-control-disabled: #111;
-  --color-shadow: #ddd;
+  gap: 0.5rem;
+  border-radius: 0.25rem;
 }

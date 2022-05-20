@@ -1,0 +1,95 @@
+<!-- ColorSchemeProvider.stories.mdx -->
+
+import { v4 as uuidv4 } from 'uuid'
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
+
+import { Canvas, Meta, Story } from '@storybook/addon-docs'
+
+import { Button, ColorSchemeProvider, DarkModeToggle } from '@a110/rito'
+
+import PalettesDemo from './PalettesDemo'
+import classes from './styles.module.css'
+
+<Meta
+  title="rito/component/ColorSchemeProvider"
+  component={ColorSchemeProvider}
+/>
+
+# ColorSchemeProvider
+
+The `ColorSchemeProvider` provides a React Context that supplies its DOM-tree
+descendants with the [`prefers-color-scheme` setting](https://www.w3.org/TR/mediaqueries-5/#prefers-color-scheme), which is obtained
+from the device using the media query, and can be overridden with an application
+setting.
+
+When the `colorScheme` changes between `light` and `dark`, the Context
+supplies this update to components using it. The `ColorSchemeProvider` also removes
+and installs a style class for each `colorScheme` respectively. These style classes
+define a number of CSS variables which together comprise a palette. The application
+may supply alternate style class names to use instead of the defaults.
+
+## Default
+
+In the simplest use case, the `ColorSchemeProvider` supplies the device color
+scheme setting, and alternates between 2 built-in default palettes:
+
+```tsx
+import { ColorSchemeProvider } from '@a110/rito'
+
+import MainView from './MainView'
+
+const App: React.FC = () => (
+  <ColorSchemeProvider>
+    <MainView />
+  </ColorSchemeProvider>
+)
+```
+
+<Story name="Default">
+  <ColorSchemeProvider>
+    <div className={classes.textbox}>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque a
+      placerat urna. Morbi interdum eros in dui euismod, quis accumsan lectus
+      condimentum. Integer hendrerit lacinia faucibus. Nunc finibus nunc ipsum,
+      a vulputate nibh lacinia ut. Nam et semper odio. Proin eu ultrices tortor,
+      finibus consequat felis. Vivamus quis cursus metus. Mauris ullamcorper
+      quis libero non imperdiet. Praesent pellentesque augue quis augue
+      venenatis, id consectetur eros scelerisque.
+    </div>
+  </ColorSchemeProvider>
+</Story>
+
+In this case, to see a change, try changing the operating system preferences
+or settings.
+
+## Custom Palettes
+
+Style class names can optionally be supplied to the `ColorSchemeProvider`,
+one for dark and one for light mode:
+
+```tsx
+import { ColorSchemeProvider } from '@a110/rito'
+
+import MainView from './MainView'
+import classes from './styles.module.css'
+
+const App: React.FC = () => (
+  <ColorSchemeProvider
+    lightClassName={classes.lightModePalette}
+    darkClassName={classes.darkModePalette}
+  >
+    <MainView />
+  </ColorSchemeProvider>
+)
+```
+
+These style classes simply define a number of CSS variables, each representing
+a color channel used by compatible widgets.
+
+<Story name="Custom Palettes">
+  <PalettesDemo />
+</Story>
+
+export const Component = () => {
+  return <SyntaxHighlighter />
+}
