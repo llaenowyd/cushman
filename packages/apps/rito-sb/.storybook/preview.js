@@ -1,3 +1,7 @@
+import { useDarkMode } from 'storybook-dark-mode'
+import { themes } from '@storybook/theming'
+
+import DocsContainer from './DocsContainer'
 import darkTheme from './darkTheme'
 import lightTheme from './lightTheme'
 
@@ -26,4 +30,8 @@ export const parameters = {
   },
   viewMode: 'docs',
   previewTabs: { 'storybook/docs/panel': { index: -1 } },
+  docs: {
+    source: { format: false },
+    container: DocsContainer,
+  },
 }

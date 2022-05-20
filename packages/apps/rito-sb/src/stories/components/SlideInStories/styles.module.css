@@ -1,0 +1,19 @@
+.container {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem;
+  gap: 0.5rem;
+}
+
+.widget {
+  display: flex;
+  font-size: 200%;
+  font-weight: 600;
+}
+
+.widgetPart {
+  background-color: var(--bg-secondary);
+  padding: 0.5rem;
+}
