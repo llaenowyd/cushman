@@ -10,7 +10,7 @@ import createHash from 'hash-generator'
 import minify from '@node-minify/core'
 import cleanCSS from '@node-minify/clean-css'
 
-const fileRegex = /\.module\.(scss|less|css)(\?used)?$/
+const fileRegex = /(\.module)?\.(scss|less|css)(\?used)?$/
 
 const injector = `function styleInject(css, ref) {
   if ( ref === void 0 ) ref = {};

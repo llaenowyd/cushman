@@ -1,0 +1,19 @@
+.anchor {
+  text-decoration: none;
+}
+
+.anchor:link {
+  color: var(--anchor-link);
+}
+
+.anchor:visited {
+  color: var(--anchor-visited);
+}
+
+.anchor:hover {
+  text-decoration: underline;
+}
+
+.anchor:active {
+  text-decoration: underline;
+}

@@ -1,0 +1,9 @@
+.textbox {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  border-radius: 0.25rem;
+}

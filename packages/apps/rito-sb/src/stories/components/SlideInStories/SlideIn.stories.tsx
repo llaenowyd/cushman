@@ -3,6 +3,8 @@ import { ComponentStory, ComponentMeta } from '@storybook/react'
 
 import { SlideIn } from '@a110/rito'
 
+import styleClasses from './styles.module.css'
+
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
   title: 'rito/component/SlideIn',
@@ -12,32 +14,20 @@ export default {
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
 const DefaultComponent: ComponentStory<typeof SlideIn> = args => (
-  <div
-    style={{
-      backgroundColor: 'var(--bg-primary)',
-      color: 'var(--text-primary)',
-      display: 'flex',
-      fontSize: '200%',
-      fontWeight: 600,
-      padding: '0.5rem',
-      gap: '0.5rem',
-    }}
-  >
-    <SlideIn {...args}>
-      <div
-        style={{
-          backgroundColor: 'var(--bg-secondary)',
-        }}
-      >
-        One
-      </div>
-    </SlideIn>
-    <div
-      style={{
-        backgroundColor: 'var(--bg-secondary)',
-      }}
-    >
-      Two
+  <div className={styleClasses.container}>
+    <div>Note that the animation doesn't work on the Storybook doc page.</div>
+    <div>
+      Try canvas instead. C.f.{' '}
+      <a href="https://stackoverflow.com/questions/72084953/storybook-animation-works-on-canvas-tab-but-not-in-doc-tab">
+        Storybook - Animation works on Canvas tab but not in Doc tab
+        [stackoverflow]
+      </a>
+    </div>
+    <div className={styleClasses.widget}>
+      <SlideIn {...args}>
+        <div className={styleClasses.widgetPart}>One</div>
+      </SlideIn>
+      <div className={styleClasses.widgetPart}>Two</div>
     </div>
   </div>
 )

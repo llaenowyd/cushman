@@ -56,8 +56,8 @@
   justify-content: space-between;
   border-radius: 0.5rem;
   box-shadow: 2px 2px 2px 0 var(--color-shadow);
-  border-top: 0.5px solid #d0d0d0;
-  border-left: 0.5px solid #d0d0d0;
+  border-top: 0.5px solid var(--color-highlight);
+  border-left: 0.5px solid var(--color-highlight);
   padding: 0.5rem;
 }
 
