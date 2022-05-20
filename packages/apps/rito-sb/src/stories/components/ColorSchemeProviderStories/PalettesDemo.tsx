@@ -11,7 +11,7 @@ const PalettesDemoImpl: React.FC = () => {
     useState(deviceColorScheme)
 
   return (
-    <ColorSchemeProvider mockDeviceColorScheme={mockDeviceColorScheme}>
+    <ColorSchemeProvider colorScheme={mockDeviceColorScheme}>
       <div className={classes.container}>
         <div>
           Here the Device Color Scheme is mocked up, to more easily demo the
@@ -35,7 +35,7 @@ const PalettesDemoImpl: React.FC = () => {
           <DemoPanel className={classes.subContainerElement} label="Default" />
           <ColorSchemeProvider
             className={classes.subContainerElement}
-            mockDeviceColorScheme={mockDeviceColorScheme}
+            colorScheme={mockDeviceColorScheme}
             lightClassName={classes.lightPurplePalette}
             darkClassName={classes.darkPurplePalette}
           >
@@ -43,7 +43,7 @@ const PalettesDemoImpl: React.FC = () => {
           </ColorSchemeProvider>
           <ColorSchemeProvider
             className={classes.subContainerElement}
-            mockDeviceColorScheme={mockDeviceColorScheme}
+            colorScheme={mockDeviceColorScheme}
             lightClassName={classes.lightGreenPalette}
             darkClassName={classes.darkGreenPalette}
           >
@@ -51,7 +51,7 @@ const PalettesDemoImpl: React.FC = () => {
           </ColorSchemeProvider>
           <ColorSchemeProvider
             className={classes.subContainerElement}
-            mockDeviceColorScheme={mockDeviceColorScheme}
+            colorScheme={mockDeviceColorScheme}
             lightClassName={classes.lightOrangePalette}
             darkClassName={classes.darkOrangePalette}
           >

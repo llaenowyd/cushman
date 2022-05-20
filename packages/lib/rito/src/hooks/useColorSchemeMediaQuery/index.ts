@@ -6,7 +6,7 @@ import { ColorScheme } from '../../../types'
 
 import { ColorSchemeMatch, getColorSchemeMatch } from './util'
 
-const useColorSchemeMediaQuery = (mockDeviceColorScheme?: ColorScheme) => {
+const useColorSchemeMediaQuery = () => {
   const isMounted = useRef<boolean>(false)
   const colorSchemeMatch = useRef<ColorSchemeMatch>()
 
@@ -49,7 +49,7 @@ const useColorSchemeMediaQuery = (mockDeviceColorScheme?: ColorScheme) => {
     }
   }, [schemeChangeHandler])
 
-  return mockDeviceColorScheme ?? colorScheme
+  return colorScheme
 }
 
 export default useColorSchemeMediaQuery
