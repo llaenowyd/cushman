@@ -1,4 +1,4 @@
-import React, { memo } from 'react'
+import React from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 
 import { SlideIn } from '@a110/rito'
@@ -11,19 +11,6 @@ export default {
   component: SlideIn,
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
 } as ComponentMeta<typeof SlideIn>
-
-const SlideInOne = (args: any) => (
-  <SlideIn {...args}>
-    <div
-      style={{
-        backgroundColor: 'var(--bg-secondary)',
-      }}
-    >
-      One
-    </div>
-  </SlideIn>
-)
-const MemoizedSlideInOne = memo(SlideInOne)
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
 const DefaultComponent: ComponentStory<typeof SlideIn> = args => (
