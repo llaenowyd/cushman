@@ -1,12 +1,12 @@
 <!-- ColorSchemeProvider.stories.mdx -->
 
-import { v4 as uuidv4 } from 'uuid'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 
-import { Canvas, Meta, Story } from '@storybook/addon-docs'
+import { Meta, Story } from '@storybook/addon-docs'
 
-import { Button, ColorSchemeProvider, DarkModeToggle } from '@a110/rito'
+import { ColorSchemeProvider } from '@a110/rito'
 
+import AppStateDemo from './AppStateDemo'
 import PalettesDemo from './PalettesDemo'
 import classes from './styles.module.css'
 
@@ -47,7 +47,7 @@ const App: React.FC = () => (
 
 <Story name="Default">
   <ColorSchemeProvider>
-    <div className={classes.textbox}>
+    <div className={classes.textBox}>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque a
       placerat urna. Morbi interdum eros in dui euismod, quis accumsan lectus
       condimentum. Integer hendrerit lacinia faucibus. Nunc finibus nunc ipsum,
@@ -61,6 +61,42 @@ const App: React.FC = () => (
 
 In this case, to see a change, try changing the operating system preferences
 or settings.
+
+## Application State
+
+The application can maintain its own dark mode state - `light` or `dark`, and
+also a boolean indicating whether to follow the device setting.
+
+```tsx
+import {
+  ColorScheme,
+  ColorSchemeState,
+  ColorSchemeProvider,
+  DarkModeToggle,
+} from '@a110/rito'
+
+const App: React.FC = () => {
+  const [colorScheme, setColorScheme] = useState<ColorScheme>('light')
+  const [followDevice, setFollowDevice] = useState<boolean>(true)
+
+  const appColorSchemeState: ColorSchemeState = {
+    colorScheme,
+    setColorScheme,
+    followDevice,
+    setFollowDevice,
+  }
+
+  return (
+    <ColorSchemeProvider appColorSchemeState={appColorSchemeState}>
+      <DarkModeToggle />
+    </ColorSchemeProvider>
+  )
+}
+```
+
+<Story name="Application State">
+  <AppStateDemo />
+</Story>
 
 ## Custom Palettes
 
