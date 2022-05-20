@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 
 import {
+  ColorScheme,
   ColorSchemeState,
   DarkColorScheme,
   LightColorScheme,
@@ -8,6 +9,7 @@ import {
 import { DARK_COLOR_SCHEME, LIGHT_COLOR_SCHEME } from '../../constants'
 import { useColorSchemeStateCombine } from '../../hooks'
 
+import DeviceColorSchemeProvider from '../DeviceColorSchemeProvider'
 import { ColorSchemeContext } from './context'
 export { ColorSchemeContext } from './context'
 
@@ -21,7 +23,7 @@ const useForceRender = (): (() => void) => {
   }
 }
 
-const ColorSchemeProvider: React.FC<{
+const ColorSchemeProviderImpl: React.FC<{
   appColorSchemeState?: ColorSchemeState
   darkClassName?: string
   lightClassName?: string
@@ -86,6 +88,25 @@ const ColorSchemeProvider: React.FC<{
     <ColorSchemeContext.Provider value={contextValue}>
       <div ref={divRef}>{children}</div>
     </ColorSchemeContext.Provider>
+  )
+}
+
+const ColorSchemeProvider: React.FC<{
+  mockDeviceColorScheme?: ColorScheme
+  appColorSchemeState?: ColorSchemeState
+  darkClassName?: string
+  lightClassName?: string
+  defaultColorScheme?: ActualColorScheme
+  children: JSX.Element
+}> = props => {
+  const { children, mockDeviceColorScheme, ...restProps } = props
+
+  return (
+    <DeviceColorSchemeProvider mockValue={mockDeviceColorScheme}>
+      <ColorSchemeProviderImpl {...restProps}>
+        {children}
+      </ColorSchemeProviderImpl>
+    </DeviceColorSchemeProvider>
   )
 }
 
