@@ -15,42 +15,22 @@ import * as examples from './examples'
 
 type DarkModeToggleStoryProps = {
   appColorScheme: ColorScheme
-  deviceColorScheme: ColorScheme
+  fakeDeviceColorScheme: ColorScheme
   followDevice: boolean
 }
 
 const DarkModeToggleStory = (props: DarkModeToggleStoryProps) => {
+  const deviceColorScheme: ColorScheme = props.fakeDeviceColorScheme
+
   const initialAppColorScheme: ColorScheme = props.appColorScheme
-  const initialDeviceColorScheme: ColorScheme = props.deviceColorScheme
   const initialFollowDevice: boolean = props.followDevice
 
-  const [deviceColorScheme, setDeviceColorScheme] = useState<ColorScheme>(
-    initialDeviceColorScheme ?? ANY_COLOR_SCHEME
-  )
   const [appColorScheme, setAppColorScheme] = useState<ColorScheme>(
     initialAppColorScheme ?? ANY_COLOR_SCHEME
   )
   const [followDeviceColorScheme, setFollowDeviceColorScheme] = useState<
     boolean | undefined
   >(initialFollowDevice)
-
-  useEffect(() => {
-    if (initialAppColorScheme) {
-      setAppColorScheme(initialAppColorScheme)
-    }
-  }, [initialAppColorScheme, setAppColorScheme])
-
-  useEffect(() => {
-    if (initialDeviceColorScheme) {
-      setDeviceColorScheme(initialDeviceColorScheme)
-    }
-  }, [initialDeviceColorScheme, setDeviceColorScheme])
-
-  useEffect(() => {
-    if (null != initialFollowDevice) {
-      setFollowDeviceColorScheme(initialFollowDevice)
-    }
-  }, [initialFollowDevice, setFollowDeviceColorScheme])
 
   return (
     <FakeDeviceColorSchemeProvider deviceColorScheme={deviceColorScheme}>
@@ -63,7 +43,6 @@ const DarkModeToggleStory = (props: DarkModeToggleStoryProps) => {
         }}
       >
         <Vignette
-          setDeviceColorScheme={setDeviceColorScheme}
           appColorScheme={appColorScheme}
           setAppColorScheme={setAppColorScheme}
           followDeviceColorScheme={followDeviceColorScheme}
@@ -78,9 +57,9 @@ export default {
   title: 'rito/component/DarkModeToggle',
   component: DarkModeToggle,
   argTypes: {
-    deviceColorScheme: {
+    fakeDeviceColorScheme: {
       ...colorSchemeArgType,
-      description: 'device color scheme, obtained via media query',
+      description: 'fake device color scheme',
     },
     appColorScheme: {
       ...colorSchemeArgType,
@@ -99,7 +78,7 @@ const Template: ComponentStory<typeof DarkModeToggleStory> = args => (
 
 export const Default = Template.bind({})
 Default.args = {
-  deviceColorScheme: 'dark',
+  fakeDeviceColorScheme: 'dark',
   appColorScheme: 'light',
   followDevice: true,
 }

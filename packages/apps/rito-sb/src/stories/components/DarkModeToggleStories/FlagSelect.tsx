@@ -7,7 +7,8 @@ const FLAG_UNDEF = ''
 const FlagSelect: React.FC<{
   flag?: boolean
   setFlag: (flag?: boolean) => void
-}> = ({ flag, setFlag }) => {
+  disabled?: boolean
+}> = ({ flag, setFlag, disabled = false }) => {
   const onChange = useCallback((evt: React.ChangeEvent<HTMLSelectElement>) => {
     const selectValue: string = evt.target.value
 
@@ -26,7 +27,7 @@ const FlagSelect: React.FC<{
   )
 
   return (
-    <select value={selectValue} onChange={onChange}>
+    <select value={selectValue} onChange={onChange} disabled={disabled}>
       <option value={FLAG_TRUE}>yes</option>
       <option value={FLAG_FALSE}>no</option>
       <option value={FLAG_UNDEF}>not set</option>

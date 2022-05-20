@@ -2,17 +2,18 @@
   background-color: var(--bg-primary);
   display: flex;
   flex-direction: column;
-  padding: 0.5rem;
-  gap: 0.5rem;
+  padding: 1rem;
+  gap: 1rem;
   align-items: flex-start;
   max-width: 100%;
+  border-radius: 0.25rem;
 }
 
 .stateBox {
   display: flex;
   flex-direction: column;
-  padding: 0.25rem;
-  gap: 0.25rem;
+  justify-content: space-between;
+  gap: 0.5rem;
   max-width: 100%;
   text-overflow: ellipsis;
   overflow-x: hidden;
@@ -40,11 +41,20 @@
   white-space: nowrap;
 }
 
+.stateBoxExplainer {
+  width: min-content;
+  min-width: 100%;
+  color: var(--text-primary);
+  font-size: 80%;
+  white-space: normal;
+  word-break: normal;
+}
+
 .stateBoxContent {
   display: flex;
-  justify-content: space-evenly;
-  padding: 0.25rem;
+  align-items: flex-end;
   gap: 0.5rem;
+  padding: 0 0.5rem 0.5rem 0;
 }
 
 .stateBoxItem {
@@ -52,18 +62,26 @@
   color: var(--text-primary);
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   border-radius: 0.5rem;
   box-shadow: 2px 2px 2px 0 var(--color-shadow);
   border-top: 0.5px solid var(--color-highlight);
   border-left: 0.5px solid var(--color-highlight);
+  gap: 0.5rem;
   padding: 0.5rem;
 }
 
 .stateBoxItemLabel {
   font-size: 80%;
   text-decoration: underline;
+  font-style: italic;
+  color: var(--text-secondary);
+  padding: 0.25rem 0 0 0;
+}
+
+.stateBoxItemValue {
+  width: 100%;
   text-align: center;
 }
 

@@ -6,19 +6,17 @@ import { ColorScheme } from '@a110/rito/types'
 import ColorSchemeSelect from './ColorSchemeSelect'
 import FlagSelect from './FlagSelect'
 
-import classes from './DarkModeToggleStories.module.css'
+import classes from './styles.module.css'
 
 const colorSchemeToEmoji = (colorScheme: ColorScheme): string =>
   'dark' === colorScheme ? '🌜' : 'light' === colorScheme ? '🌞' : '🤷‍♂️'
 
 const Vignette: React.FC<{
-  setDeviceColorScheme: (colorScheme: ColorScheme) => void
   appColorScheme: ColorScheme
   setAppColorScheme: (colorScheme: ColorScheme) => void
   followDeviceColorScheme: boolean | undefined
   setFollowDeviceColorScheme: (fd: boolean | undefined) => void
 }> = ({
-  setDeviceColorScheme,
   appColorScheme,
   setAppColorScheme,
   followDeviceColorScheme,
@@ -66,13 +64,18 @@ const Vignette: React.FC<{
                 </div>
                 <ColorSchemeSelect
                   colorScheme={deviceColorScheme}
-                  setColorScheme={setDeviceColorScheme}
+                  setColorScheme={() => {}}
+                  disabled
                 />
               </div>
             </div>
           </div>
           <div className={classes.stateBoxItem}>
-            <div className={classes.stateBoxItemLabel}>app</div>
+            <div className={classes.stateBoxExplainer}>
+              The Story holds this state 👇 to demonstrate the toggle widget
+              changing the color scheme by changing the app state.
+            </div>
+            <div className={classes.stateBoxItemLabel}>app state</div>
             <div className={classes.stateBoxContent}>
               <div className={classes.stateBoxItem}>
                 <div className={classes.stateBoxItemLabel}>color scheme</div>
@@ -82,6 +85,7 @@ const Vignette: React.FC<{
                 <ColorSchemeSelect
                   colorScheme={appColorScheme}
                   setColorScheme={setAppColorScheme}
+                  disabled
                 />
               </div>
               <div className={classes.stateBoxItem}>
@@ -92,14 +96,18 @@ const Vignette: React.FC<{
                 <FlagSelect
                   flag={followDeviceColorScheme}
                   setFlag={setFollowDeviceColorScheme}
+                  disabled
                 />
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div className={classes.featureCard}>
-        <DarkModeToggle />
+      <div className={classes.stateBoxItem}>
+        <div className={classes.stateBoxItemLabel}>DarkModeToggle</div>
+        <div className={classes.stateBoxItemValue}>
+          <DarkModeToggle />
+        </div>
       </div>
     </div>
   )
