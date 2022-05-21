@@ -24,7 +24,7 @@ const ColorSchemeProviderImpl: React.FC<{
   darkClassName?: string
   lightClassName?: string
   defaultColorScheme?: ActualColorScheme
-  children: JSX.Element
+  children: JSX.Element | JSX.Element[]
 }> = ({
   colorScheme,
   appColorSchemeState,
@@ -86,7 +86,7 @@ const ColorSchemeProvider: React.FC<{
   darkClassName?: string
   lightClassName?: string
   defaultColorScheme?: ActualColorScheme
-  children: JSX.Element
+  children: JSX.Element | JSX.Element[]
 }> = props => {
   const { children, ...restProps } = props
 

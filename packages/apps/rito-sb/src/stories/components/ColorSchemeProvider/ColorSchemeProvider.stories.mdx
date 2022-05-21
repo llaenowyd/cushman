@@ -7,6 +7,7 @@ import { Meta, Story } from '@storybook/addon-docs'
 import { ColorSchemeProvider } from '@a110/rito'
 
 import AppStateDemo from './AppStateDemo'
+import ConstColorScheme from './ConstColorScheme'
 import PalettesDemo from './PalettesDemo'
 import classes from './styles.module.css'
 
@@ -67,13 +68,14 @@ or settings.
 The application can maintain its own dark mode state - `light` or `dark`, and
 also a boolean indicating whether to follow the device setting.
 
+<Story name="Application State">
+  <AppStateDemo />
+</Story>
+
 ```tsx
-import {
-  ColorScheme,
-  ColorSchemeState,
-  ColorSchemeProvider,
-  DarkModeToggle,
-} from '@a110/rito'
+import React, { useState } from 'react'
+import { ColorSchemeProvider, DarkModeToggle } from '@a110/rito'
+import { ColorScheme, ColorSchemeState } from '@a110/rito/types'
 
 const App: React.FC = () => {
   const [colorScheme, setColorScheme] = useState<ColorScheme>('light')
@@ -94,14 +96,53 @@ const App: React.FC = () => {
 }
 ```
 
-<Story name="Application State">
-  <AppStateDemo />
+## Const Color Scheme
+
+A color scheme `light` or `dark` can be established as a fixed setting,
+that won't track the device setting. This doesn't require any application
+state setup.
+
+<Story name="Const Color Scheme">
+  <ConstColorScheme />
 </Story>
+
+```tsx
+import { ColorSchemeProvider } from '@a110/rito'
+
+// prettier-ignore
+const View = () => (
+  <>
+    <Paragraph>
+      This text inherits the existing color scheme.
+    </Paragraph>
+    <ColorSchemeProvider colorScheme="light">
+      <Paragraph>
+        This text will always be in the `light` color scheme.
+      </Paragraph>
+    </ColorSchemeProvider>
+  </>
+)
+```
 
 ## Custom Palettes
 
 Style class names can optionally be supplied to the `ColorSchemeProvider`,
-one for dark and one for light mode:
+one for dark and one for light mode.
+
+These style classes simply define a number of CSS variables, each representing
+a color channel used by compatible widgets.
+
+```css
+.lightModePalette {
+  --bg-primary: #fff;
+  --bg-secondary: #ccc;
+  --text-primary: #000;
+  --text-secondary: #333;
+  /* etc, consult @a110/rito/templates/default-palettes.ts
+     tbd generate this doc from code
+     tbd can it typecheck? */
+}
+```
 
 ```tsx
 import { ColorSchemeProvider } from '@a110/rito'
@@ -119,8 +160,12 @@ const App: React.FC = () => (
 )
 ```
 
-These style classes simply define a number of CSS variables, each representing
-a color channel used by compatible widgets.
+Here several `ColorSchemeProviders` are installed and each
+is supplied with different palette classes.
+
+Clicking the **color scheme button** in the toolbar ☝ will
+alternate between `dark` and `light`, each `ColorSchemeProvider`
+installing its palette respectively.
 
 <Story name="Custom Palettes">
   <PalettesDemo />

@@ -1,0 +1,35 @@
+<!-- Button.stories.mdx -->
+
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
+import { Canvas, Meta, Story } from '@storybook/addon-docs'
+import { DarkModeToggle } from '@a110/rito'
+
+import DefaultExample from './DefaultExample'
+
+<Meta title="rito/component/DarkModeToggle" component={DarkModeToggle} />
+
+# DarkModeToggle
+
+The `DarkModeToggle` element provides a means for the user to change
+between `light` and `dark` modes, or to indicate that the application
+should defer to the device setting instead.
+
+<Story name="Default">
+  <DefaultExample />
+</Story>
+
+```tsx
+import { DarkModeToggle } from '@a110/rito'
+
+import { Container } from './styled'
+
+const Panel = () => (
+  <Container>
+    <DarkModeToggle />
+  </Container>
+)
+```
+
+export const Component = () => {
+  return <SyntaxHighlighter />
+}

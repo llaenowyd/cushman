@@ -45,7 +45,12 @@ export const parameters = {
             'Anchor',
             'Button',
             'ColorSchemeProvider',
-            ['Default', 'Application State', 'Custom Palettes'],
+            [
+              'Default',
+              'Application State',
+              'Const Color Scheme',
+              'Custom Palettes',
+            ],
             'DarkModeToggle',
             '*',
           ],
