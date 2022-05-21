@@ -16,37 +16,40 @@ import styleClasses from './styles.module.css'
 The Anchor element provides a click interaction on its child, that
 when clicked sets the window location to the specified `href` URL.
 
+<Story name="Default">
+  <div className={styleClasses.textBox}>
+    <div className={styleClasses.textboxitem}>
+      Here's{' '}
+      <Anchor href={window.parent.location}>
+        a link to a page that's been visited
+      </Anchor>
+      , and here's <Anchor href={`https://www.example.com/${uuidv4()}`}>
+        a link to a page that has not
+      </Anchor>.
+    </div>
+  </div>
+</Story>
+
 ```tsx
-<Paragraph>
-  <Anchor href="survey.html">Click here</Anchor> to see the latest results!
-</Paragraph>
+// prettier-ignore
+const TwoAnchors = () => (
+  <Paragraph>
+    Here's
+    <Anchor href={window.location}>
+      a link to a page that's been visited
+    </Anchor>
+    , and here's
+    <Anchor href={`https://www.example.com/${uuidv4()}`}>
+      a link to a page that has not
+    </Anchor>
+    .
+  </Paragraph>
+)
 ```
 
 Clicking the **color scheme button** in the toolbar ☝ will alter the color
 of the link text.
 
-<Canvas>
-  <Story name="Visited">
-    <div className={styleClasses.textBox}>
-      <div className={styleClasses.textboxitem}>
-        Here is{' '}
-        <Anchor href={window.parent.location}>a link to this page</Anchor>, and
-        of course, it's visited.
-      </div>
-      <div className={styleClasses.textboxitem}>
-        Here is{' '}
-        <Anchor href={`https://www.example.com/${uuidv4()}`}>
-          a link to a random document
-        </Anchor>
-        , and as such it's not visited.
-      </div>
-    </div>
-  </Story>
-</Canvas>
-
 export const Component = () => {
   return <SyntaxHighlighter />
-}
-Component.parameters = {
-  docs: { source: { format: false } },
 }
