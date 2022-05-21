@@ -99,12 +99,12 @@
   flex-direction: column;
   padding: 1rem;
   gap: 1rem;
+  border-radius: 0.25rem;
   background-color: var(--bg-primary);
   color: var(--text-primary);
-}
-
-.buttonRow {
-  padding-left: 1rem;
+  border-width: 1px;
+  border-style: solid;
+  border-color: var(--color-highlight);
 }
 
 .subContainer {

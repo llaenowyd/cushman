@@ -14,7 +14,7 @@ export default {
     '--color-shadow': '#111',
     '--anchor-link': colors.sky[300],
     '--anchor-visited': colors.indigo[300],
-    '--color-highlight': '#333',
+    '--color-highlight': '#444',
   },
   'rito-light': {
     '--bg-primary': colors.amber[50],
