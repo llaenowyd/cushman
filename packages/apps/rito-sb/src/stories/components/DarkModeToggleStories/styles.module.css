@@ -1,86 +1,10 @@
-.container {
+.panel {
   background-color: var(--bg-primary);
-  display: flex;
-  flex-direction: column;
-  padding: 1rem;
-  gap: 1rem;
-  align-items: flex-start;
-  max-width: 100%;
-  border-radius: 0.25rem;
-}
-
-.stateBox {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: 0.5rem;
-  max-width: 100%;
-  text-overflow: ellipsis;
-  overflow-x: hidden;
-  white-space: nowrap;
-  user-select: none;
-}
-
-.stateBoxHeading {
   color: var(--text-primary);
-  text-decoration: underline;
-  max-width: 100%;
-  text-overflow: ellipsis;
-  overflow-x: hidden;
-  white-space: nowrap;
-}
-
-.stateBoxSubheading {
-  color: var(--text-secondary);
-  text-decoration: none;
-  font-size: 80%;
-  padding-left: 1rem;
-  max-width: 100%;
-  text-overflow: ellipsis;
-  overflow-x: hidden;
-  white-space: nowrap;
-}
-
-.stateBoxExplainer {
-  width: min-content;
-  min-width: 100%;
-  color: var(--text-primary);
-  font-size: 80%;
-  white-space: normal;
-  word-break: normal;
-}
-
-.stateBoxContent {
-  display: flex;
-  align-items: flex-end;
-  gap: 0.5rem;
-  padding: 0 0.5rem 0.5rem 0;
-}
-
-.stateBoxItem {
-  background-color: var(--bg-secondary);
-  color: var(--text-primary);
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: space-between;
+  display: inline-block;
   border-radius: 0.5rem;
   box-shadow: 2px 2px 2px 0 var(--color-shadow);
   border-top: 0.5px solid var(--color-highlight);
   border-left: 0.5px solid var(--color-highlight);
-  gap: 0.5rem;
-  padding: 0.5rem;
-}
-
-.stateBoxItemLabel {
-  font-size: 80%;
-  text-decoration: underline;
-  font-style: italic;
-  color: var(--text-secondary);
-  padding: 0.25rem 0 0 0;
-}
-
-.stateBoxItemValue {
-  width: 100%;
-  text-align: center;
+  padding: 1rem;
 }
