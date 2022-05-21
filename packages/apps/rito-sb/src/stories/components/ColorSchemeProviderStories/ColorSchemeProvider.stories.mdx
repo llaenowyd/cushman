@@ -7,6 +7,7 @@ import { Meta, Story } from '@storybook/addon-docs'
 import { ColorSchemeProvider } from '@a110/rito'
 
 import AppStateDemo from './AppStateDemo'
+import ConstColorScheme from './ConstColorScheme'
 import PalettesDemo from './PalettesDemo'
 import classes from './styles.module.css'
 
@@ -93,6 +94,34 @@ const App: React.FC = () => {
     </ColorSchemeProvider>
   )
 }
+```
+
+## Const Color Scheme
+
+A color scheme `light` or `dark` can be established as a fixed setting,
+that won't track the device setting. This doesn't require any application
+state setup.
+
+<Story name="Const Color Scheme">
+  <ConstColorScheme />
+</Story>
+
+```tsx
+import { ColorSchemeProvider } from '@a110/rito'
+
+// prettier-ignore
+const View = () => (
+  <>
+    <Paragraph>
+      This text inherits the existing color scheme.
+    </Paragraph>
+    <ColorSchemeProvider colorScheme="light">
+      <Paragraph>
+        This text will always be in the `light` color scheme.
+      </Paragraph>
+    </ColorSchemeProvider>
+  </>
+)
 ```
 
 ## Custom Palettes
