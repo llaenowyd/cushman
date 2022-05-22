@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "@a110/rito": "*",
-    "@a110/storybook-expand-all": "^1.0.6",
+    "@a110/storybook-expand-all": "^1.0.9",
     "react": "^18.0.0",
     "react-dom": "^18.0.0"
   },

@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@a110/storybook-expand-all@^1.0.6":
-  version "1.0.6"
-  resolved "https://registry.yarnpkg.com/@a110/storybook-expand-all/-/storybook-expand-all-1.0.6.tgz#5d1602db71711f288fc8c8d1d719f96b8985a847"
-  integrity sha512-GjI23sm7MV9k8DFqa1nO9gfy+jCUzztU5Vlzv3D5LIt+thFoj8TbivdJ088pg5wQMZmxF5OgWqnJ3sLKe4X+KQ==
+"@a110/storybook-expand-all@^1.0.9":
+  version "1.0.9"
+  resolved "https://registry.yarnpkg.com/@a110/storybook-expand-all/-/storybook-expand-all-1.0.9.tgz#5af2d0623e6880371f4f3dbe4bb6af678928a95f"
+  integrity sha512-19Exfm7FEgC3SLhDg0TtNZGh6XaLSyz2lbvOGBxos5p8xk2JzR9GumixUCZXING9h+DPqsMpkoFIgjdnpX6onw==
 
 "@alloc/quick-lru@^5.2.0":
   version "5.2.0"
