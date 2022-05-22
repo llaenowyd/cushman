@@ -17,6 +17,7 @@ module.exports = {
         transcludeMarkdown: true,
       },
     },
+    '@a110/storybook-expand-all',
   ],
   framework: '@storybook/react',
   core: {
