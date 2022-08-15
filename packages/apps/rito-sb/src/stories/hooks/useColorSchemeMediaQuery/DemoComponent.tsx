@@ -23,8 +23,8 @@ const DemoComponent: React.FC = () => {
   return (
     <div className={classes.container}>
       <div>
-        This hook provides the device or system color scheme: {colorSchemeEmoji}{' '}
-        ({colorScheme}).
+        The `useColorSchemeMediaQuery` hook provides the device or system color
+        scheme: {colorSchemeEmoji} ({colorScheme}).
       </div>
       <div className={classes.subText}>
         To change the value displayed, try adjusting the OS Preferences:
