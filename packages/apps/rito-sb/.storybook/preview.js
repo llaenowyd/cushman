@@ -1,20 +1,16 @@
-import { useDarkMode } from 'storybook-dark-mode'
+import { DocsPage } from '@storybook/addon-docs'
+// import { useDarkMode } from 'storybook-dark-mode'
 import { themes } from '@storybook/theming'
 
 import DocsContainer from './DocsContainer'
 import darkTheme from './darkTheme'
 import lightTheme from './lightTheme'
 
-import '@a110/rito/default-palettes.css'
+import '@a110/rito/dist/styles/default-palettes.css'
 
 export const parameters = {
-  actions: { argTypesRegex: '^on[A-Z].*' }, // tbd maybe don't need
   controls: {
     expanded: true,
-    matchers: {
-      color: /(background|color)$/i, // tbd maybe don't need
-      date: /Date$/, // tbd maybe don't need
-    },
   },
   darkMode: {
     dark: darkTheme, // caution don't add variables here
@@ -29,10 +25,11 @@ export const parameters = {
     stylePreview: true,
   },
   viewMode: 'docs',
-  previewTabs: { 'storybook/docs/panel': { index: -1 } },
+  // previewTabs: { 'storybook/docs/panel': { index: -1 } },
   docs: {
     source: { format: false },
     container: DocsContainer,
+    // page: DocsPage,
   },
   options: {
     storySort: {

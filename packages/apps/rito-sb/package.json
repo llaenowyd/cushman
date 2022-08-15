@@ -1,44 +1,45 @@
 {
   "name": "@a110/rito-sb",
   "private": true,
-  "version": "0.0.1",
+  "version": "0.0.14",
   "scripts": {
     "clean": "rimraf storybook-static",
     "dev": "start-storybook -p 6006",
     "dev:libwatch": "nodemon --watch ../../packages/rito/dist -e ts,tsx --exec \"start-storybook -p 6006\"",
-    "dev:app": "vite",
-    "build:app": "tsc && vite build",
-    "preview:app": "vite preview",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "serve": "serve storybook-static"
   },
   "dependencies": {
     "@a110/rito": "*",
-    "@a110/storybook-expand-all": "^1.0.9",
+    "@a110/storybook-expand-all": "^1.1.1",
     "react": "^18.0.0",
-    "react-dom": "^18.0.0"
+    "react-dom": "^18.0.0",
+    "react-syntax-highlighter": "^15.5.0"
   },
   "devDependencies": {
     "@babel/core": "^7.17.10",
-    "@storybook/addon-actions": "^6.5.0",
-    "@storybook/addon-docs": "^6.5.0",
-    "@storybook/addon-essentials": "^6.5.0",
-    "@storybook/addon-interactions": "^6.5.0",
-    "@storybook/addon-links": "^6.5.0",
-    "@storybook/builder-vite": "^0.1.33",
-    "@storybook/react": "^6.5.0",
-    "@storybook/testing-library": "^0.0.11",
-    "@storybook/theming": "^6.5.0",
+    "@storybook/addon-actions": "^6.5.10",
+    "@storybook/addon-essentials": "^6.5.10",
+    "@storybook/addon-interactions": "^6.5.10",
+    "@storybook/addon-links": "^6.5.10",
+    "@storybook/addons": "^6.5.10",
+    "@storybook/api": "^6.5.10",
+    "@storybook/builder-webpack4": "^6.5.10",
+    "@storybook/components": "^6.5.10",
+    "@storybook/core-events": "^6.5.10",
+    "@storybook/manager-webpack4": "^6.5.10",
+    "@storybook/react": "^6.5.10",
+    "@storybook/testing-library": "^0.0.13",
+    "@storybook/theming": "^6.5.10",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
-    "@vitejs/plugin-react": "^1.3.0",
     "babel-loader": "^8.2.5",
     "nodemon": "^2.0.16",
     "rimraf": "^3.0.2",
     "serve": "^13.0.2",
+    "storybook-css-modules": "^1.0.8",
     "storybook-dark-mode": "^1.1.0",
-    "typescript": "^4.6.3",
-    "vite": "^2.9.7"
+    "typescript": "^4.6.3"
   }
 }
